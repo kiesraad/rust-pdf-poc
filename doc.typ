@@ -1,4 +1,4 @@
-#import "@preview/tablex:0.0.8": tablex, rowspanx, colspanx
+#import "vendor/tablex.typ": tablex, rowspanx, colspanx
 #let input = json("input.json")
 
 #set text(
