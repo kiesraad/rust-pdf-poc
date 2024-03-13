@@ -9,8 +9,9 @@ fn main() {
     let mut child = Command::new("/home/marlonp/.cargo/bin/typst")
         .stdin(Stdio::piped())
         .arg("compile")
-        .arg("-")
-        .arg("doc.pdf")
+        .args(vec!["--font-path", "vendor/fonts"])
+        .arg("-") // Indicates typst will read input from stdin
+        .arg("doc.pdf") // Output file path
         .spawn()
         .expect("failed to execute process");
 
