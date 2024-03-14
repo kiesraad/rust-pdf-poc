@@ -1,19 +1,21 @@
 use chrono::Datelike;
 use comemo::Prehashed;
 use std::{
+    collections::HashMap,
     io::Write,
-    process::{Command, Stdio}, path::PathBuf, collections::HashMap,
+    path::PathBuf,
+    process::{Command, Stdio},
 };
-use typst_pdf;
 use typst::{
     self,
-    diag::{FileResult, eco_format, FileError},
+    diag::{eco_format, FileResult},
+    eval::Tracer,
     foundations::{Bytes, Datetime, Smart},
     syntax::{FileId, Source, VirtualPath},
     text::{Font, FontBook, FontInfo},
-    Library, World, eval::Tracer,
+    Library, World,
 };
-
+use typst_pdf;
 
 const DOC: &str = include_str!("../doc.typ");
 const INPUT: &str = include_str!("../input.json");
@@ -26,6 +28,16 @@ struct MyWorld {
     library: Prehashed<Library>,
     book: Prehashed<FontBook>,
     files: HashMap<FileId, Bytes>,
+}
+
+macro_rules! time {
+    ($label:literal, $($statement:stmt), * ) => {
+        let start = chrono::Local::now().timestamp_millis();
+        $(
+           $statement
+        )*
+        println!("{}: {} ms", $label, chrono::Local::now().timestamp_millis() - start);
+    };
 }
 
 impl World for MyWorld {
@@ -53,15 +65,16 @@ impl World for MyWorld {
         } else {
             let bytes = self.file(id)?;
             let source_string = String::from_utf8(bytes.to_vec())?;
-            Ok(Source::new(id, source_string))
+            time!("create source",
+                let source = Source::new(id, source_string)
+            );
+            Ok(source)
         }
     }
 
     #[doc = " Try to access the specified file."]
     fn file(&self, id: FileId) -> FileResult<Bytes> {
-        let result = self.files.get(&id)
-            .cloned()
-            .unwrap();
+        let result = self.files.get(&id).cloned().unwrap();
 
         // TODO: Error handling
         Ok(result)
@@ -123,29 +136,35 @@ fn lib() {
     font_book.push(FontInfo::new(FONT, 0).unwrap());
 
     let mut files = HashMap::new();
-    files.insert(FileId::new(None, VirtualPath::new("vendor/tablex.typ")), Bytes::from(TABLEX.as_bytes()));
-    files.insert(FileId::new(None, VirtualPath::new("input.json")), Bytes::from(INPUT.as_bytes()));
-    
+    files.insert(
+        FileId::new(None, VirtualPath::new("vendor/tablex.typ")),
+        Bytes::from(TABLEX.as_bytes()),
+    );
+    files.insert(
+        FileId::new(None, VirtualPath::new("input.json")),
+        Bytes::from(INPUT.as_bytes()),
+    );
+
     let world = MyWorld {
         files,
         root: PathBuf::from("./"),
         source,
         book: Prehashed::new(font_book),
-        library: Prehashed::new(
-            Library::builder()
-                .build()
-        ),
+        library: Prehashed::new(Library::builder().build()),
     };
 
     let mut tracer = Tracer::new();
-    let result = typst::compile(&world, &mut tracer);
-    
+    time!("compile",
+        let result = typst::compile(&world, &mut tracer)
+    );
+
     match result {
         Ok(document) => {
             let buffer = typst_pdf::pdf(&document, Smart::Auto, None);
             std::fs::write("./test.pdf", buffer)
-                .map_err(|err| eco_format!("failed to write PDF file ({err})")).unwrap();
-        },
+                .map_err(|err| eco_format!("failed to write PDF file ({err})"))
+                .unwrap();
+        }
         Err(err) => eprintln!("{:?}", err),
     }
 }
@@ -153,4 +172,5 @@ fn lib() {
 fn main() {
     //cli();
     lib();
+    println!("finished.");
 }
