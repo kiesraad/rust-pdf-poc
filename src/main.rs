@@ -2,7 +2,7 @@ use chrono::Datelike;
 use comemo::Prehashed;
 use std::{
     io::Write,
-    process::{Command, Stdio},
+    process::{Command, Stdio}, path::PathBuf, collections::HashMap,
 };
 use typst_pdf;
 use typst::{
@@ -21,9 +21,11 @@ const TABLEX: &str = include_str!("../vendor/tablex.typ");
 const FONT: &[u8] = include_bytes!("../vendor/fonts/Vera.ttf");
 
 struct MyWorld {
+    root: PathBuf,
     source: Source,
     library: Prehashed<Library>,
     book: Prehashed<FontBook>,
+    files: HashMap<FileId, Bytes>,
 }
 
 impl World for MyWorld {
@@ -41,30 +43,33 @@ impl World for MyWorld {
 
     #[doc = " Access the main source file."]
     fn main(&self) -> Source {
-        self.source.to_owned()
+        self.source.clone()
     }
 
     #[doc = " Try to access the specified source file."]
-    fn source(&self, _id: FileId) -> FileResult<Source> {
-        FileResult::Ok(self.source.to_owned())
+    fn source(&self, id: FileId) -> FileResult<Source> {
+        if id == self.source.id() {
+            Ok(self.source.clone())
+        } else {
+            let bytes = self.file(id)?;
+            let source_string = String::from_utf8(bytes.to_vec())?;
+            Ok(Source::new(id, source_string))
+        }
     }
 
     #[doc = " Try to access the specified file."]
     fn file(&self, id: FileId) -> FileResult<Bytes> {
-        dbg!(id);
-        // TODO: Actually implement this!
-        if *id.vpath() == VirtualPath::new("/input.json") {
-            FileResult::Ok(Bytes::from(INPUT.as_bytes()))
-        } else if *id.vpath() == VirtualPath::new("/vendor/tablex.typ") {
-            FileResult::Ok(Bytes::from(TABLEX.as_bytes()))
-        } else {
-            // TODO: Actually report a useful error
-            FileResult::Err(FileError::NotSource)
-        }
+        let result = self.files.get(&id)
+            .cloned()
+            .unwrap();
+
+        // TODO: Error handling
+        Ok(result)
     }
 
     #[doc = " Try to access the font with the given index in the font book."]
     fn font(&self, index: usize) -> Option<Font> {
+        // TODO: Implement support for multiple fonts
         Font::new(Bytes::from_static(FONT), index as u32)
     }
 
@@ -113,13 +118,23 @@ fn cli() {
 }
 
 fn lib() {
-    let source = Source::detached(DOC);
+    let source = Source::new(FileId::new(None, VirtualPath::new("./")), DOC.to_string());
     let mut font_book = FontBook::new();
     font_book.push(FontInfo::new(FONT, 0).unwrap());
+
+    let mut files = HashMap::new();
+    files.insert(FileId::new(None, VirtualPath::new("vendor/tablex.typ")), Bytes::from(TABLEX.as_bytes()));
+    files.insert(FileId::new(None, VirtualPath::new("input.json")), Bytes::from(INPUT.as_bytes()));
+    
     let world = MyWorld {
+        files,
+        root: PathBuf::from("./"),
         source,
         book: Prehashed::new(font_book),
-        library: Prehashed::new(Library::builder().build()),
+        library: Prehashed::new(
+            Library::builder()
+                .build()
+        ),
     };
 
     let mut tracer = Tracer::new();
