@@ -1,4 +1,4 @@
-#import "vendor/tablex.typ": tablex, rowspanx, colspanx
+//#import "vendor/tablex.typ": tablex, rowspanx, colspanx
 #let input = json("input.json")
 
 #set text(
@@ -101,7 +101,7 @@ Met dit proces-verbaal stelt het hoofdstembureau voor een kieskring de uitkomst 
 === Aantal geldige, blanco en ongeldige stemmen
 
 === Aantal stemmen per kandidaat en lijst
-
+/*
 #for lijst in input.stemmen {
   tablex(
     columns: (80pt, 1fr, auto),
@@ -126,3 +126,4 @@ Met dit proces-verbaal stelt het hoofdstembureau voor een kieskring de uitkomst 
     }
   )
 }
+*/
