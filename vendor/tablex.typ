@@ -1,33 +1,33 @@
-// // Welcome to tablex!
-// // Feel free to contribute with any features you think are missing.
-// // Version: v0.0.8
+// Welcome to tablex!
+// Feel free to contribute with any features you think are missing.
+// Version: v0.0.8
 
-// // -- table counter --
+// -- table counter --
 
 #let _tablex-table-counter = counter("_tablex-table-counter")
 
-// // -- compat --
+// -- compat --
 
-// // get the types of things so we can compare with them
-// // (0.2.0-0.7.0: they're strings; 0.8.0+: they're proper types)
-// #let _array-type = type(())
-// #let _dict-type = type((a: 5))
-// #let _bool-type = type(true)
-// #let _str-type = type("")
-// #let _color-type = type(red)
-// #let _stroke-type = type(red + 5pt)
-// #let _length-type = type(5pt)
-// #let _rel-len-type = type(100% + 5pt)
-// #let _ratio-type = type(100%)
-// #let _int-type = type(5)
-// #let _float-type = type(5.0)
-// #let _fraction-type = type(5fr)
-// #let _function-type = type(x => x)
-// #let _content-type = type([])
-// // note: since 0.8.0, alignment and 2d alignment are the same
-// // but keep it like this for pre-0.8.0
-// #let _align-type = type(left)
-// #let _2d-align-type = type(top + left)
+// get the types of things so we can compare with them
+// (0.2.0-0.7.0: they're strings; 0.8.0+: they're proper types)
+#let _array-type = type(())
+#let _dict-type = type((a: 5))
+#let _bool-type = type(true)
+#let _str-type = type("")
+#let _color-type = type(red)
+#let _stroke-type = type(red + 5pt)
+#let _length-type = type(5pt)
+#let _rel-len-type = type(100% + 5pt)
+#let _ratio-type = type(100%)
+#let _int-type = type(5)
+#let _float-type = type(5.0)
+#let _fraction-type = type(5fr)
+#let _function-type = type(x => x)
+#let _content-type = type([])
+// note: since 0.8.0, alignment and 2d alignment are the same
+// but keep it like this for pre-0.8.0
+#let _align-type = type(left)
+#let _2d-align-type = type(top + left)
 
 // // If types aren't strings, this means we're using 0.8.0+.
 // #let using-typst-v080-or-later = str(type(_str-type)) == "type"
@@ -135,24 +135,24 @@
 //     parent: none,
 // )
 
-// #let cellx(content,
-//     x: auto, y: auto,
-//     rowspan: 1, colspan: 1,
-//     fill: auto, align: auto,
-//     inset: auto,
-//     fit-spans: auto
-// ) = (
-//     tablex-dict-type: "cell",
-//     content: content,
-//     rowspan: rowspan,
-//     colspan: colspan,
-//     align: align,
-//     fill: fill,
-//     inset: inset,
-//     fit-spans: fit-spans,
-//     x: x,
-//     y: y,
-// )
+#let cellx(content,
+    x: auto, y: auto,
+    rowspan: 1, colspan: 1,
+    fill: auto, align: auto,
+    inset: auto,
+    fit-spans: auto
+) = (
+    tablex-dict-type: "cell",
+    content: content,
+    rowspan: rowspan,
+    colspan: colspan,
+    align: align,
+    fill: fill,
+    inset: inset,
+    fit-spans: fit-spans,
+    x: x,
+    y: y,
+)
 
 // #let occupied(x: 0, y: 0, parent_x: none, parent_y: none) = (
 //     tablex-dict-type: "occupied",
@@ -166,34 +166,34 @@
 
 // // -- type checks, transformers and validators --
 
-// // Is this a valid dict created by this library?
-// #let is-tablex-dict(x) = (
-//     type(x) == _dict-type
-//         and "tablex-dict-type" in x
-// )
+// Is this a valid dict created by this library?
+#let is-tablex-dict(x) = (
+    type(x) == _dict-type
+        and "tablex-dict-type" in x
+)
 
-// #let is-tablex-dict-type(x, ..dict_types) = (
-//     is-tablex-dict(x)
-//         and x.tablex-dict-type in dict_types.pos()
-// )
+#let is-tablex-dict-type(x, ..dict_types) = (
+    is-tablex-dict(x)
+        and x.tablex-dict-type in dict_types.pos()
+)
 
-// #let is-tablex-cell(x) = is-tablex-dict-type(x, "cell")
-// #let is-tablex-hline(x) = is-tablex-dict-type(x, "hline")
-// #let is-tablex-vline(x) = is-tablex-dict-type(x, "vline")
-// #let is-some-tablex-line(x) = is-tablex-dict-type(x, "hline", "vline")
-// #let is-tablex-occupied(x) = is-tablex-dict-type(x, "occupied")
+#let is-tablex-cell(x) = is-tablex-dict-type(x, "cell")
+#let is-tablex-hline(x) = is-tablex-dict-type(x, "hline")
+#let is-tablex-vline(x) = is-tablex-dict-type(x, "vline")
+#let is-some-tablex-line(x) = is-tablex-dict-type(x, "hline", "vline")
+#let is-tablex-occupied(x) = is-tablex-dict-type(x, "occupied")
 
-// #let table-item-convert(item, keep_empty: true) = {
-//     if type(item) == _function-type {  // dynamic cell content
-//         cellx(item)
-//     } else if keep_empty and item == () {
-//         item
-//     } else if type(item) != _dict-type or "tablex-dict-type" not in item {
-//         cellx[#item]
-//     } else {
-//         item
-//     }
-// }
+#let table-item-convert(item, keep_empty: true) = {
+    if type(item) == _function-type {  // dynamic cell content
+        cellx(item)
+    } else if keep_empty and item == () {
+        item
+    } else if type(item) != _dict-type or "tablex-dict-type" not in item {
+        cellx[#item]
+    } else {
+        item
+    }
+}
 
 // #let rowspanx(length, content, ..cell_options) = {
 //     if is-tablex-cell(content) {
@@ -217,111 +217,111 @@
 //     }
 }
 
-// // Get expected amount of cell positions
-// // in the table (considering colspan and rowspan)
-// #let get-expected-grid-len(items, col_len: 0) = {
-//     let len = 0
+// Get expected amount of cell positions
+// in the table (considering colspan and rowspan)
+#let get-expected-grid-len(items, col_len: 0) = {
+    let len = 0
 
-//     // maximum explicit 'y' specified
-//     let max_explicit_y = items
-//         .filter(c => c.y != auto)
-//         .fold(0, (acc, cell) => {
-//             if (is-tablex-cell(cell)
-//                     and type(cell.y) in (_int-type, _float-type)
-//                     and cell.y > acc) {
-//                 cell.y
-//             } else {
-//                 acc
-//             }
-//         })
+    // maximum explicit 'y' specified
+    let max_explicit_y = items
+        .filter(c => c.y != auto)
+        .fold(0, (acc, cell) => {
+            if (is-tablex-cell(cell)
+                    and type(cell.y) in (_int-type, _float-type)
+                    and cell.y > acc) {
+                cell.y
+            } else {
+                acc
+            }
+        })
 
-//     for item in items {
-//         if is-tablex-cell(item) and item.x == auto and item.y == auto {
-//             // cell occupies (colspan * rowspan) spaces
-//             len += item.colspan * item.rowspan
-//         } else if type(item) == _content-type {
-//             len += 1
-//         }
-//     }
+    for item in items {
+        if is-tablex-cell(item) and item.x == auto and item.y == auto {
+            // cell occupies (colspan * rowspan) spaces
+            len += item.colspan * item.rowspan
+        } else if type(item) == _content-type {
+            len += 1
+        }
+    }
 
-//     let rows(len) = calc.ceil(len / col_len)
+    let rows(len) = calc.ceil(len / col_len)
 
-//     while rows(len) < max_explicit_y {
-//         len += col_len
-//     }
+    while rows(len) < max_explicit_y {
+        len += col_len
+    }
 
-//     len
-// }
+    len
+}
 
-// // Check if this length is infinite.
-// #let is-infinite-len(len) = {
-//     type(len) in (_ratio-type, _fraction-type, _rel-len-type, _length-type) and "inf" in repr(len)
-// }
+// Check if this length is infinite.
+#let is-infinite-len(len) = {
+    type(len) in (_ratio-type, _fraction-type, _rel-len-type, _length-type) and "inf" in repr(len)
+}
 
-// // Check if this is a valid color (color, gradient or pattern).
-// #let is-color(val) = {
-//     type(val) == _color-type or str(type(val)) in ("gradient", "pattern")
-// }
+// Check if this is a valid color (color, gradient or pattern).
+#let is-color(val) = {
+    type(val) == _color-type or str(type(val)) in ("gradient", "pattern")
+}
 
-// #let validate-cols-rows(columns, rows, items: ()) = {
-//     if type(columns) == _int-type {
-//         assert(columns >= 0, message: "Error: Cannot have a negative amount of columns.")
+#let validate-cols-rows(columns, rows, items: ()) = {
+    if type(columns) == _int-type {
+        assert(columns >= 0, message: "Error: Cannot have a negative amount of columns.")
 
-//         columns = (auto,) * columns
-//     }
+        columns = (auto,) * columns
+    }
 
-//     if type(rows) == _int-type {
-//         assert(rows >= 0, message: "Error: Cannot have a negative amount of rows.")
-//         rows = (auto,) * rows
-//     }
+    if type(rows) == _int-type {
+        assert(rows >= 0, message: "Error: Cannot have a negative amount of rows.")
+        rows = (auto,) * rows
+    }
 
-//     if type(columns) != _array-type {
-//         columns = (columns,)
-//     }
+    if type(columns) != _array-type {
+        columns = (columns,)
+    }
 
-//     if type(rows) != _array-type {
-//         rows = (rows,)
-//     }
+    if type(rows) != _array-type {
+        rows = (rows,)
+    }
 
-//     // default empty column to a single auto column
-//     if columns.len() == 0 {
-//         columns = (auto,)
-//     }
+    // default empty column to a single auto column
+    if columns.len() == 0 {
+        columns = (auto,)
+    }
 
-//     // default empty row to a single auto row
-//     if rows.len() == 0 {
-//         rows = (auto,)
-//     }
+    // default empty row to a single auto row
+    if rows.len() == 0 {
+        rows = (auto,)
+    }
 
-//     let col_row_is_valid(col_row) = (
-//         (not is-infinite-len(col_row)) and (col_row == auto or type(col_row) in (
-//             _fraction-type, _length-type, _rel-len-type, _ratio-type
-//             ))
-//     )
+    let col_row_is_valid(col_row) = (
+        (not is-infinite-len(col_row)) and (col_row == auto or type(col_row) in (
+            _fraction-type, _length-type, _rel-len-type, _ratio-type
+            ))
+    )
 
-//     if not columns.all(col_row_is_valid) {
-//         panic("Invalid column sizes (must all be 'auto' or a valid, finite length specifier).")
-//     }
+    if not columns.all(col_row_is_valid) {
+        panic("Invalid column sizes (must all be 'auto' or a valid, finite length specifier).")
+    }
 
-//     if not rows.all(col_row_is_valid) {
-//         panic("Invalid row sizes (must all be 'auto' or a valid, finite length specifier).")
-//     }
+    if not rows.all(col_row_is_valid) {
+        panic("Invalid row sizes (must all be 'auto' or a valid, finite length specifier).")
+    }
 
-//     let col_len = columns.len()
+    let col_len = columns.len()
 
-//     let grid_len = get-expected-grid-len(items, col_len: col_len)
+    let grid_len = get-expected-grid-len(items, col_len: col_len)
 
-//     let expected_rows = calc.ceil(grid_len / col_len)
+    let expected_rows = calc.ceil(grid_len / col_len)
 
-//     // more cells than expected => add rows
-//     if rows.len() < expected_rows {
-//         let missing_rows = expected_rows - rows.len()
+    // more cells than expected => add rows
+    if rows.len() < expected_rows {
+        let missing_rows = expected_rows - rows.len()
 
-//         rows += (rows.last(),) * missing_rows
-//     }
+        rows += (rows.last(),) * missing_rows
+    }
 
-//     (columns: columns, rows: rows, items: ())
-// }
+    (columns: columns, rows: rows, items: ())
+}
 
 // // -- end: type checks and validators --
 
@@ -816,7 +816,7 @@
 
 // // Organize cells in a grid from the given items,
 // // and also get all given lines
-// #let generate-grid(items, x_limit: 0, y_limit: 0, map-cells: none, fit-spans: none) = {
+#let generate-grid(items, x_limit: 0, y_limit: 0, /*map-cells: none, fit-spans: none*/) = {
 //     // init grid as a matrix
 //     // y_limit  x   x_limit
 //     let grid = create-grid(x_limit, y_limit)
@@ -1045,7 +1045,7 @@
 //         vlines: vlines,
 //         new_row_count: grid-count-rows(grid)
 //     )
-// }
+}
 
 // // -- end: grid functions --
 
@@ -2851,7 +2851,7 @@
          let max_pos = default-if-none(page_dim_at.bottom_right, (x: t_pos.x + page_width, y: t_pos.y + page_height))
          let min_pos = default-if-none(page_dim_at.top_left, t_pos)
 
-//         let items = items.pos().map(table-item-convert)
+         let items = items.pos().map(table-item-convert)
 
 //         let gutter = parse-gutters(
 //             col-gutter: column-gutter, row-gutter: row-gutter,
@@ -2860,23 +2860,22 @@
 //             page-width: page_width, page-height: page_height
 //         )
 
-//         let validated_cols_rows = validate-cols-rows(
-//             columns, rows, items: items.filter(is-tablex-cell))
+         let validated_cols_rows = validate-cols-rows(
+             columns, rows, items: items.filter(is-tablex-cell))
 
-//         let columns = validated_cols_rows.columns
-//         let rows = validated_cols_rows.rows
-//         items += validated_cols_rows.items
+         let columns = validated_cols_rows.columns
+         let rows = validated_cols_rows.rows
+         items += validated_cols_rows.items
+          let col_len = columns.len()
+          let row_len = rows.len()
 
-//         let col_len = columns.len()
-//         let row_len = rows.len()
-
-//         // generate cell matrix and other things
-//         let grid_info = generate-grid(
-//             items,
-//             x_limit: col_len, y_limit: row_len,
-//             map-cells: map-cells,
-//             fit-spans: fit-spans
-//         )
+        // generate cell matrix and other things
+        let grid_info = generate-grid(
+            items,
+            x_limit: col_len, y_limit: row_len,
+            //map-cells: map-cells,
+            //fit-spans: fit-spans
+        )
 
 //         let table_grid = grid_info.grid
 //         let hlines = grid_info.hlines
