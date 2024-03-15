@@ -3,12 +3,11 @@ use comemo::Prehashed;
 use std::{
     collections::HashMap,
     io::Write,
-    path::PathBuf,
     process::{Command, Stdio},
 };
 use typst::{
     self,
-    diag::{eco_format, FileResult},
+    diag::{eco_format, FileError, FileResult},
     eval::Tracer,
     foundations::{Bytes, Datetime, Smart},
     syntax::{FileId, Source, VirtualPath},
@@ -23,7 +22,6 @@ const TABLEX: &str = include_str!("../vendor/tablex.typ");
 const FONT: &[u8] = include_bytes!("../vendor/fonts/Vera.ttf");
 
 struct MyWorld {
-    root: PathBuf,
     source: Source,
     library: Prehashed<Library>,
     book: Prehashed<FontBook>,
@@ -31,7 +29,7 @@ struct MyWorld {
 }
 
 macro_rules! time {
-    ($label:literal, $($statement:stmt), * ) => {
+    ($label:literal, $($statement:stmt),*) => {
         let start = chrono::Local::now().timestamp_millis();
         $(
            $statement
@@ -41,24 +39,18 @@ macro_rules! time {
 }
 
 impl World for MyWorld {
-    #[doc = " The standard library."]
-    #[doc = ""]
-    #[doc = " Can be created through `Library::build()`."]
     fn library(&self) -> &Prehashed<Library> {
         &self.library
     }
 
-    #[doc = " Metadata about all known fonts."]
     fn book(&self) -> &Prehashed<FontBook> {
         &self.book
     }
 
-    #[doc = " Access the main source file."]
     fn main(&self) -> Source {
         self.source.clone()
     }
 
-    #[doc = " Try to access the specified source file."]
     fn source(&self, id: FileId) -> FileResult<Source> {
         if id == self.source.id() {
             Ok(self.source.clone())
@@ -72,27 +64,18 @@ impl World for MyWorld {
         }
     }
 
-    #[doc = " Try to access the specified file."]
     fn file(&self, id: FileId) -> FileResult<Bytes> {
-        let result = self.files.get(&id).cloned().unwrap();
-
-        // TODO: Error handling
-        Ok(result)
+        self.files
+            .get(&id)
+            .cloned()
+            .ok_or(FileError::NotFound(id.vpath().as_rootless_path().into()))
     }
 
-    #[doc = " Try to access the font with the given index in the font book."]
     fn font(&self, index: usize) -> Option<Font> {
         // TODO: Implement support for multiple fonts
         Font::new(Bytes::from_static(FONT), index as u32)
     }
 
-    #[doc = " Get the current date."]
-    #[doc = ""]
-    #[doc = " If no offset is specified, the local date should be chosen. Otherwise,"]
-    #[doc = " the UTC date should be chosen with the corresponding offset in hours."]
-    #[doc = ""]
-    #[doc = " If this function returns `None`, Typst\'s `datetime` function will"]
-    #[doc = " return an error."]
     fn today(&self, offset: Option<i64>) -> Option<Datetime> {
         let now = chrono::Local::now();
 
@@ -147,7 +130,6 @@ fn lib() {
 
     let world = MyWorld {
         files,
-        root: PathBuf::from("./"),
         source,
         book: Prehashed::new(font_book),
         library: Prehashed::new(Library::builder().build()),
