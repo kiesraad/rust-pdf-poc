@@ -1,12 +1,12 @@
 use std::path::Path;
 
-// All font files that 
-const FONT_DIR: &str = "vendor/fonts";
+// All font files that
+const FONT_DIR: &str = "fonts";
 const FONT_FILES: &[&str] = &[
-    "Vera.ttf",
-    "VeraBd.ttf",
-    "VeraBI.ttf",
-    "VeraIt.ttf",
+    "bitstream-vera/Vera.ttf",
+    "bitstream-vera/VeraBd.ttf",
+    "bitstream-vera/VeraBI.ttf",
+    "bitstream-vera/VeraIt.ttf",
 ];
 
 macro_rules! warn {
@@ -26,7 +26,7 @@ fn font_files_exist() {
 fn main() {
     // Simple example for compile time validation
     font_files_exist();
-    let error = if !Path::new("./input.json").exists() {
+    let error = if !Path::new("./templates/inputs/model-o-7.json").exists() {
         println!("input file not found!");
         true
     } else {

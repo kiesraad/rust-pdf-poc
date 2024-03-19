@@ -1,4 +1,4 @@
-#let input = json("input.json")
+#let input = json("inputs/model-o-7.json")
 
 #set text(
   font: "Bitstream Vera Sans",

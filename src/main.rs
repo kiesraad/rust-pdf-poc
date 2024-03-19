@@ -11,9 +11,9 @@ use typst::{
 };
 use typst_pdf;
 
-const DOC: &str = include_str!("../doc.typ");
-const INPUT: &str = include_str!("../input.json");
-const FONT: &[u8] = include_bytes!("../vendor/fonts/Vera.ttf");
+const DOC: &str = include_str!("../templates/model-o-7.typ");
+const INPUT: &str = include_str!("../templates/inputs/model-o-7.json");
+const FONT: &[u8] = include_bytes!("../fonts/bitstream-vera/Vera.ttf");
 
 struct MyWorld {
     source: Source,
@@ -95,7 +95,7 @@ fn main() {
 
     let mut files = HashMap::new();
     files.insert(
-        FileId::new(None, VirtualPath::new("input.json")),
+        FileId::new(None, VirtualPath::new("inputs/model-o-7.json")),
         Bytes::from(INPUT.as_bytes()),
     );
 
