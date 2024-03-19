@@ -1750,7 +1750,8 @@ checksum = "6af6ae20167a9ece4bcb41af5b80f8a1f1df981f6391189ce00fd257af04126a"
 [[package]]
 name = "typst"
 version = "0.11.0"
-source = "git+https://github.com/typst/typst.git?tag=v0.11.0#2bf9f95dd83f2ceef1e32ae1847a162c7d193f76"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "82ce6533a33d2cc4b5eba6b009b862e75c8f9146a584f84ca154c94463e43993"
 dependencies = [
  "az",
  "bitflags 2.4.2",
@@ -1817,7 +1818,8 @@ checksum = "f13f85360328da54847dd7fefaf272dfa5b6d1fdeb53f32938924c39bf5b2c6c"
 [[package]]
 name = "typst-macros"
 version = "0.11.0"
-source = "git+https://github.com/typst/typst.git?tag=v0.11.0#2bf9f95dd83f2ceef1e32ae1847a162c7d193f76"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "54e48fdd6dabf48a0e595960aaef6ae43dac7d243e8c1c6926a0787d5b8a9ba7"
 dependencies = [
  "heck",
  "proc-macro2",
@@ -1828,7 +1830,8 @@ dependencies = [
 [[package]]
 name = "typst-pdf"
 version = "0.11.0"
-source = "git+https://github.com/typst/typst.git?tag=v0.11.0#2bf9f95dd83f2ceef1e32ae1847a162c7d193f76"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "7c27957bbe3e17b961746a7ddf6f0831479674331457680bb8e3b84f7b83bd58"
 dependencies = [
  "base64 0.22.0",
  "bytemuck",
@@ -1853,7 +1856,8 @@ dependencies = [
 [[package]]
 name = "typst-syntax"
 version = "0.11.0"
-source = "git+https://github.com/typst/typst.git?tag=v0.11.0#2bf9f95dd83f2ceef1e32ae1847a162c7d193f76"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "367d86bf18f0363146bea1ea76fad19b54458695fdfad5e74ead3ede574b75fe"
 dependencies = [
  "comemo",
  "ecow",
@@ -1869,7 +1873,8 @@ dependencies = [
 [[package]]
 name = "typst-timing"
 version = "0.11.0"
-source = "git+https://github.com/typst/typst.git?tag=v0.11.0#2bf9f95dd83f2ceef1e32ae1847a162c7d193f76"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "6b2629933cde6f299c43627b90c83bb006cb906c56cc5dec7324f0a5017d5fd8"
 dependencies = [
  "parking_lot",
  "serde",
