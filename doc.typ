@@ -1,4 +1,3 @@
-#import "vendor/tablex.typ": tablex, colspanx
 #let input = json("input.json")
 
 #set text(
@@ -102,27 +101,29 @@ Met dit proces-verbaal stelt het hoofdstembureau voor een kieskring de uitkomst 
 
 === Aantal stemmen per kandidaat en lijst
 
-#for lijst in input.stemmen {
-  tablex(
-    columns: (80pt, 1fr, auto),
-    repeat-header: true,
-    inset: 8pt,
-    header-rows: 2,
-    colspanx(3)[
-      #grid(
-        columns: (auto, auto),
-        gutter: 12pt,
-        [*Lijstnaam*],   [#lijst.naam],
-        [*Lijstnummer*], [#lijst.lijstnummer],
-      )
-    ],
-    [*Nummer op de lijst*], [*Naam kandidaat*], [*Aantal stemmen*],
-    ..for kandidaat in lijst.kandidaten {
-      (
-        align(right)[#kandidaat.positie],
-        kandidaat.name,
-        align(right)[#kandidaat.votes],
-      )
-    }
-  )
+#for _ in range(1, 10) {
+  for lijst in input.stemmen {
+    table(
+      columns: (80pt, 1fr, auto),
+      inset: 8pt,
+      fill: (_, y) => if y > 2 and calc.odd(y) { rgb("EAF2F5") },
+      table.header(
+        table.cell(colspan: 3, grid(
+            columns: (auto, auto),
+            gutter: 12pt,
+            [*Lijstnaam*],   [#lijst.naam],
+            [*Lijstnummer*], [#lijst.lijstnummer],
+        )),
+        [*Nummer op de lijst*], [*Naam kandidaat*], [*Aantal stemmen*],
+      ),
+      ..for kandidaat in lijst.kandidaten {
+        (
+          align(right)[#kandidaat.positie],
+          kandidaat.name,
+          align(right)[#kandidaat.votes],
+        )
+      }
+    )
+  }
 }
+

@@ -18,7 +18,6 @@ use typst_pdf;
 
 const DOC: &str = include_str!("../doc.typ");
 const INPUT: &str = include_str!("../input.json");
-const TABLEX: &str = include_str!("../vendor/tablex.typ");
 const FONT: &[u8] = include_bytes!("../vendor/fonts/Vera.ttf");
 
 struct MyWorld {
@@ -119,10 +118,6 @@ fn lib() {
     font_book.push(FontInfo::new(FONT, 0).unwrap());
 
     let mut files = HashMap::new();
-    files.insert(
-        FileId::new(None, VirtualPath::new("vendor/tablex.typ")),
-        Bytes::from(TABLEX.as_bytes()),
-    );
     files.insert(
         FileId::new(None, VirtualPath::new("input.json")),
         Bytes::from(INPUT.as_bytes()),
