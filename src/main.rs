@@ -1,10 +1,5 @@
-use chrono::Datelike;
 use comemo::Prehashed;
-use std::{
-    collections::HashMap,
-    io::Write,
-    process::{Command, Stdio},
-};
+use std::collections::HashMap;
 use typst::{
     self,
     diag::{eco_format, FileError, FileResult},
@@ -29,11 +24,11 @@ struct MyWorld {
 
 macro_rules! time {
     ($label:literal, $($statement:stmt),*) => {
-        let start = chrono::Local::now().timestamp_millis();
+        let start = std::time::Instant::now();
         $(
            $statement
         )*
-        println!("{}: {} ms", $label, chrono::Local::now().timestamp_millis() - start);
+        println!("{}: {} ms", $label, start.elapsed().as_millis());
     };
 }
 
@@ -76,6 +71,8 @@ impl World for MyWorld {
     }
 
     fn today(&self, offset: Option<i64>) -> Option<Datetime> {
+        use chrono::Datelike;
+
         let now = chrono::Local::now();
 
         let naive = match offset {
@@ -91,26 +88,26 @@ impl World for MyWorld {
     }
 }
 
-fn cli() {
-    let mut child = Command::new("/home/marlonp/.cargo/bin/typst")
-        .stdin(Stdio::piped())
-        .arg("compile")
-        .args(vec!["--font-path", "vendor/fonts"])
-        .arg("-") // Indicates typst will read input from stdin
-        .arg("doc.pdf") // Output file path
-        .spawn()
-        .expect("failed to execute process");
+// fn cli() {
+//     let mut child = Command::new("/home/marlonp/.cargo/bin/typst")
+//         .stdin(Stdio::piped())
+//         .arg("compile")
+//         .args(vec!["--font-path", "vendor/fonts"])
+//         .arg("-") // Indicates typst will read input from stdin
+//         .arg("doc.pdf") // Output file path
+//         .spawn()
+//         .expect("failed to execute process");
 
-    let mut stdin = child.stdin.take().expect("Failed to open stdin");
-    std::thread::spawn(move || {
-        stdin
-            .write_all(DOC.as_bytes())
-            .expect("Failed to write to stdin");
-    });
+//     let mut stdin = child.stdin.take().expect("Failed to open stdin");
+//     std::thread::spawn(move || {
+//         stdin
+//             .write_all(DOC.as_bytes())
+//             .expect("Failed to write to stdin");
+//     });
 
-    let output = child.wait_with_output().expect("Failed to read stdout");
-    println!("{}", String::from_utf8(output.stdout).unwrap());
-}
+//     let output = child.wait_with_output().expect("Failed to read stdout");
+//     println!("{}", String::from_utf8(output.stdout).unwrap());
+// }
 
 fn lib() {
     let source = Source::new(FileId::new(None, VirtualPath::new("./")), DOC.to_string());
