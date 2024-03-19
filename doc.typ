@@ -105,7 +105,7 @@ Met dit proces-verbaal stelt het hoofdstembureau voor een kieskring de uitkomst 
   table(
     columns: (80pt, 1fr, auto),
     inset: 8pt,
-    fill: (_, y) => if y > 2 and calc.odd(y) { rgb("EAF2F5") },
+    fill: (_, y) => if calc.odd(y) { rgb("EAF2F5") },
     table.header(
       table.cell(colspan: 3, grid(
           columns: (auto, auto),
@@ -123,6 +123,7 @@ Met dit proces-verbaal stelt het hoofdstembureau voor een kieskring de uitkomst 
       )
     }
   )
+  pagebreak(weak: true)
 }
 
 
