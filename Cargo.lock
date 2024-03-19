@@ -1028,6 +1028,8 @@ version = "0.1.0"
 dependencies = [
  "chrono",
  "comemo",
+ "serde",
+ "serde_json",
  "typst",
  "typst-pdf",
 ]
