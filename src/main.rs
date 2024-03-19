@@ -88,28 +88,7 @@ impl World for MyWorld {
     }
 }
 
-// fn cli() {
-//     let mut child = Command::new("/home/marlonp/.cargo/bin/typst")
-//         .stdin(Stdio::piped())
-//         .arg("compile")
-//         .args(vec!["--font-path", "vendor/fonts"])
-//         .arg("-") // Indicates typst will read input from stdin
-//         .arg("doc.pdf") // Output file path
-//         .spawn()
-//         .expect("failed to execute process");
-
-//     let mut stdin = child.stdin.take().expect("Failed to open stdin");
-//     std::thread::spawn(move || {
-//         stdin
-//             .write_all(DOC.as_bytes())
-//             .expect("Failed to write to stdin");
-//     });
-
-//     let output = child.wait_with_output().expect("Failed to read stdout");
-//     println!("{}", String::from_utf8(output.stdout).unwrap());
-// }
-
-fn lib() {
+fn main() {
     let source = Source::new(FileId::new(None, VirtualPath::new("./")), DOC.to_string());
     let mut font_book = FontBook::new();
     font_book.push(FontInfo::new(FONT, 0).unwrap());
@@ -141,10 +120,6 @@ fn lib() {
         }
         Err(err) => eprintln!("{:?}", err),
     }
-}
 
-fn main() {
-    //cli();
-    lib();
     println!("finished.");
 }
