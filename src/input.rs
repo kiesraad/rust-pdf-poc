@@ -17,6 +17,7 @@ pub enum PdfModel {
 pub struct ModelO7Input {
     gen_datum: String,
     leden_van: String,
+    version: String,
     datum: String,
     kiesring: String,
     stemmen: Vec<Lijst>,

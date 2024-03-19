@@ -8,7 +8,6 @@
 )
 
 #show heading.where(level: 3): set text(weight: "regular", size: 12pt)
-
 = Proces-verbaal van een hoofdstembureau
 De verkiezing van de leden van de *#input.leden_van*
 #grid(
@@ -86,5 +85,4 @@ Met dit proces-verbaal stelt het hoofdstembureau voor een kieskring de uitkomst 
   )
   pagebreak(weak: true)
 }
-
 

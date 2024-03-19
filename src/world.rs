@@ -164,7 +164,12 @@ fn load_sources() -> Vec<Source> {
         };
     }
 
-    vec![include_source!("templates/model-o-7.typ")]
+    vec![
+        include_source!("templates/common/style.typ"),
+        include_source!("templates/common/scripts.typ"),
+        include_source!("templates/model-p-22-1.typ"),
+        include_source!("templates/model-o-7.typ"),
+    ]
 }
 
 /// Load all fonts available from the `fonts/` directory

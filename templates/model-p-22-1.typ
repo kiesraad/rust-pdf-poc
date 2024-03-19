@@ -25,8 +25,7 @@ De volgende politieke groeperingen hebben deelgenomen aan de verkiezing (in de v
 
 #table(
   columns: (
-    // 31 columns
-    40pt, 80pt, 22pt, 22pt, 22pt, auto, auto, auto, auto, auto,            
+    40pt, 80pt, 42pt, 42pt, 22pt, auto, auto, auto, auto, auto,            
     auto, auto, auto, auto, auto, auto, auto, auto, auto, auto,
     auto, auto, auto, auto, auto,
   ),
@@ -44,9 +43,9 @@ De volgende politieke groeperingen hebben deelgenomen aan de verkiezing (in de v
     ),
     [],
     [],
-    rotate(-90deg, reflow: true, align(center)[Lijstengroep]),
-    rotate(-90deg, reflow: true, [Lijstengroep]),
-    rotate(-90deg, reflow: true, [Op zichzelf staande lijst]),
+    [#rotate(-90deg, reflow: true, [Lijstengroep (gelijkluidende lijsten)])],
+    [#rotate(-90deg, reflow: true, [Lijstengroep (niet gelijkluidende lijsten)])],
+    [#rotate(-90deg, reflow: true, [Op zichzelf staande lijst])],
     [1], [2], [3], [4], [5], [6], [7], [8], [9], [10], 
     [11], [12], [13], [14], [15], [16], [17], [18], [19], [20], 
   ),
