@@ -1,7 +1,13 @@
 use std::collections::HashMap;
 
 use comemo::Prehashed;
-use typst::{diag::{FileError, FileResult}, foundations::{Bytes, Datetime}, syntax::{FileId, Source, VirtualPath}, text::{Font, FontBook}, Library, World};
+use typst::{
+    diag::{FileError, FileResult},
+    foundations::{Bytes, Datetime},
+    syntax::{FileId, Source, VirtualPath},
+    text::{Font, FontBook},
+    Library, World,
+};
 
 use crate::input::PdfModel;
 
@@ -34,7 +40,10 @@ impl PdfWorld {
             assets,
             library: Prehashed::new(Library::builder().build()),
             main_source: Source::new(FileId::new(None, VirtualPath::new("empty.typ")), "".into()),
-            input_data: (FileId::new(None, VirtualPath::new("input.json")), Bytes::from_static(&[])),
+            input_data: (
+                FileId::new(None, VirtualPath::new("input.json")),
+                Bytes::from_static(&[]),
+            ),
         }
     }
 
@@ -44,20 +53,18 @@ impl PdfWorld {
     /// for that template is.
     pub fn set_input_model(&mut self, input: PdfModel) {
         let main_source_path = input.as_template_path();
-        let main_source = self.sources.iter()
+        let main_source = self
+            .sources
+            .iter()
             .find(|s| s.id().vpath().as_rootless_path() == main_source_path)
             .cloned()
             .unwrap();
         let input_path = input.as_input_path();
         let input_data = input.get_input().unwrap();
         self.main_source = main_source;
-        self.input_data = (
-            FileId::new(None, VirtualPath::new(input_path)),
-            input_data,
-        );
+        self.input_data = (FileId::new(None, VirtualPath::new(input_path)), input_data);
     }
 }
-
 
 impl World for PdfWorld {
     fn library(&self) -> &Prehashed<Library> {
@@ -128,7 +135,7 @@ macro_rules! include_filedata {
         } else {
             include_bytes!(concat!("../", $path)) as &'static [u8]
         }
-    }
+    };
 }
 
 /// Macro that loads data as a string from a file
@@ -142,7 +149,7 @@ macro_rules! include_strdata {
         } else {
             include_str!(concat!("../", $path)) as &'static str
         }
-    }
+    };
 }
 
 /// Load all sources available from the `templates/` directory (i.e. all typst
@@ -150,13 +157,14 @@ macro_rules! include_strdata {
 fn load_sources() -> Vec<Source> {
     macro_rules! include_source {
         ($path:literal) => {
-            Source::new(FileId::new(None, VirtualPath::new($path)), include_strdata!($path).to_string())
-        }
+            Source::new(
+                FileId::new(None, VirtualPath::new($path)),
+                include_strdata!($path).to_string(),
+            )
+        };
     }
 
-    vec![
-        include_source!("templates/model-o-7.typ"),
-    ]
+    vec![include_source!("templates/model-o-7.typ")]
 }
 
 /// Load all fonts available from the `fonts/` directory
@@ -170,8 +178,7 @@ fn load_fonts() -> (Vec<Font>, FontBook) {
             let font = Font::new(Bytes::from_static(fontdata), 0).expect("Error reading font file");
             fontbook.push(font.info().clone());
             fonts.push(font);
-
-        }
+        };
     }
 
     include_font!("fonts/bitstream-vera/Vera.ttf");
