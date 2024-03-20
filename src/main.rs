@@ -1,7 +1,6 @@
 use std::{fs::read_to_string, time::Instant};
 
 use typst::{diag::eco_format, eval::Tracer, foundations::Smart};
-use typst_pdf;
 
 use crate::world::PdfWorld;
 
