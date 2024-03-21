@@ -37,9 +37,7 @@ pub struct Kandidaat {
 }
 
 #[derive(Serialize, Deserialize)]
-pub struct ModelP22_1Input {
-
-}
+pub struct ModelP22_1Input {}
 
 impl PdfModel {
     /// Get the filename for the input and template

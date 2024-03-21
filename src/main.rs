@@ -1,7 +1,6 @@
 use std::{fs::read_to_string, time::Instant};
 
 use typst::{diag::eco_format, eval::Tracer, foundations::Smart};
-use typst_pdf;
 
 use crate::world::PdfWorld;
 
@@ -12,7 +11,9 @@ fn main() {
     println!("Initializing...");
     let start = Instant::now();
     let mut world = PdfWorld::new();
-    world.set_input_model(input::PdfModel::ModelO7(serde_json::from_str(&read_to_string("templates/inputs/model-o-7.json").unwrap()).unwrap()));
+    world.set_input_model(input::PdfModel::ModelO7(
+        serde_json::from_str(&read_to_string("templates/inputs/model-o-7.json").unwrap()).unwrap(),
+    ));
     println!("Initialization took {} ms", start.elapsed().as_millis());
 
     println!("Starting compilation...");
@@ -29,7 +30,10 @@ fn main() {
             std::fs::write("./test.pdf", buffer)
                 .map_err(|err| eco_format!("failed to write PDF file ({err})"))
                 .unwrap();
-            println!("Pdf generation took {} ms", pdf_gen_start.elapsed().as_millis());
+            println!(
+                "Pdf generation took {} ms",
+                pdf_gen_start.elapsed().as_millis()
+            );
         }
         Err(err) => eprintln!("{:?}", err),
     }
