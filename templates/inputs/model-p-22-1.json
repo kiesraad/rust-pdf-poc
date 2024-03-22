@@ -5,14 +5,14 @@
   "leden_van": "Tweede Kamer der Staten-Generaal",
   "datum": "22 november 2023",
   "partijen": [
-    { "positie": 1, "naam": "Testpartij" },
-    { "positie": 2, "naam": "Van de partij" },
-    { "positie": 3, "naam": "Partijdig" },
-    { "positie": 4, "naam": "Partijfractie" },
-    { "positie": 5, "naam": "De Partij" },
-    { "positie": 6, "naam": "Partijpartners" },
-    { "positie": 7, "naam": "Partij voor de groep" },
-    { "positie": 8, "naam": "Partijtje" }
+    { "positie": 1, "naam": "Testpartij", "gelijkluidend": true },
+    { "positie": 2, "naam": "Van de partij", "gelijkluidend": false },
+    { "positie": 3, "naam": "Partijdig", "gelijkluidend": true },
+    { "positie": 4, "naam": "Partijfractie", "gelijkluidend": true },
+    { "positie": 5, "naam": "De Partij", "gelijkluidend": false },
+    { "positie": 6, "naam": "Partijpartners", "gelijkluidend": false },
+    { "positie": 7, "naam": "Partij voor de groep", "gelijkluidend": false },
+    { "positie": 8, "naam": "Partijtje", "gelijkluidend": true }
   ],
   "stemmen": [
     {

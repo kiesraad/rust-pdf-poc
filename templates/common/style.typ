@@ -1,5 +1,3 @@
-#import "scripts.typ": format_sha256
-
 #let conf(input, doc) = [
   #set text(
     font: "Bitstream Vera Sans",
@@ -18,7 +16,7 @@
         columns: (3fr, 1fr),
         [
           Datum: #input.gen_datum - SHA-256-Hashcode: \ 
-          #format_sha256(input.sha256)
+          input.sha256
         ],
         align(right)[
           pagina #counter(page).display("1 / 1", both: true)

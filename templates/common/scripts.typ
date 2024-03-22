@@ -16,9 +16,3 @@
 #let input_date() = [
   #input_digit() #input_digit() - #input_digit() #input_digit() - #input_digit() #input_digit() #input_digit() #input_digit() (dd-mm-jjjj)
 ]
-
-#let format_sha256(sha256) = upper({
-  sha256.enumerate().fold(let r, (r, c) => {
-    return r + c
-  });
-});
