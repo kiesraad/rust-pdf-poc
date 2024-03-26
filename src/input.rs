@@ -20,6 +20,9 @@ pub struct ModelO7Input {
     version: String,
     sha256: String,
     datum: String,
+    gemeente: String,
+    zitting_datum: String,
+    kiesgerechtigden: String,
     kieskring: String,
     stemmen: Vec<Lijst>,
 }

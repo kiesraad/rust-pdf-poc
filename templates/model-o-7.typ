@@ -49,6 +49,14 @@ Met dit proces-verbaal stelt het hoofdstembureau voor een kieskring de uitkomst 
 
 = Zitting: aantal kiesgerechtigden
 
+Het betreft de zitting van het hoofdstembureau in de gemeente *#input.gemeente*. \
+\
+Kieskring *#input.kieskring*.\
+\
+Datum en tijdstip aanvang zitting *#input.zitting_datum*\
+\
+Het aantal kiesgerechtigden woonachtig in de van deze kieskring deel uitmakende gemeente(n) bedraagt *#input.kiesgerechtigden*\.
+
 = Aantal stemmen
 == Aantal geldige, blanco en ongeldige stemmen
 
@@ -71,22 +79,27 @@ Met dit proces-verbaal stelt het hoofdstembureau voor een kieskring de uitkomst 
     )
 }
 
-#align(center, 
-box(
-  width: 80%,
-  table(
-    columns: (4fr, 1fr),
-    column-gutter: 4pt,
-    row-gutter: 4pt,
-    inset: 0pt,
-    align: (left + horizon),
-    stroke: none,
-    description([Aantal stembiljetten met een geldige stem op een kandidaat]), values("E", 105978),
-    description([Aantal blanco stembiljetten]), values("F", 978),
-    description([Aantal ongeldige stembiljetten]), values("G", 873),
-)))
+#align(
+  center, 
+  box(
+    width: 80%,
+    inset: (top: 20pt, bottom: 20pt),
+    table(
+      columns: (4fr, 1fr),
+      column-gutter: 4pt,
+      row-gutter: 4pt,
+      inset: 0pt,
+      align: (left + horizon),
+      stroke: none,
+      description([Aantal stembiljetten met een geldige stem op een kandidaat]), values("E", 105978),
+      description([Aantal blanco stembiljetten]), values("F", 978),
+      description([Aantal ongeldige stembiljetten]), values("G", 873),
+    )
+  )
+)
 
 == Aantal stemmen per kandidaat en lijst
+#pagebreak()
 
 #for lijst in input.stemmen {
   table(
