@@ -128,42 +128,38 @@ impl World for PdfWorld {
 /// In a debug build, this is done at runtime, for a release build this is
 /// done at compile time.
 macro_rules! include_filedata {
-    ($path:literal) => {
-        {
-            #[cfg(debug_assertions)]
-            fn filedata_init() -> &'static [u8] {
-                Box::leak(std::fs::read($path).unwrap().into_boxed_slice())
-            }
-
-            #[cfg(not(debug_assertions))]
-            fn filedata_init() -> &'static [u8] {
-                include_bytes!(concat!("../", $path)) as &'static [u8]
-            }
-
-            filedata_init()
+    ($path:literal) => {{
+        #[cfg(debug_assertions)]
+        fn filedata_init() -> &'static [u8] {
+            Box::leak(std::fs::read($path).unwrap().into_boxed_slice())
         }
-    };
+
+        #[cfg(not(debug_assertions))]
+        fn filedata_init() -> &'static [u8] {
+            include_bytes!(concat!("../", $path)) as &'static [u8]
+        }
+
+        filedata_init()
+    }};
 }
 
 /// Macro that loads data as a string from a file
 /// In a debug build, this is done at runtime, for a release build this is
 /// done at compile time.
 macro_rules! include_strdata {
-    ($path:literal) => {
-        {
-            #[cfg(debug_assertions)]
-            fn strdata_init() -> &'static str {
-                Box::leak(std::fs::read_to_string($path).unwrap().into_boxed_str())
-            }
-
-            #[cfg(not(debug_assertions))]
-            fn strdata_init() -> &'static str {
-                include_str!(concat!("../", $path)) as &'static str
-            }
-
-            strdata_init()
+    ($path:literal) => {{
+        #[cfg(debug_assertions)]
+        fn strdata_init() -> &'static str {
+            Box::leak(std::fs::read_to_string($path).unwrap().into_boxed_str())
         }
-    };
+
+        #[cfg(not(debug_assertions))]
+        fn strdata_init() -> &'static str {
+            include_str!(concat!("../", $path)) as &'static str
+        }
+
+        strdata_init()
+    }};
 }
 
 /// Load all sources available from the `templates/` directory (i.e. all typst
@@ -178,6 +174,10 @@ fn load_sources() -> Vec<Source> {
         };
     }
 
+    // We include each template file individually to make sure that all expected files
+    // are available. We include these files into the binary in release mode, but
+    // read them at runtime on initialization to allow more rapid development on the
+    // typst files.
     vec![include_source!("templates/model-o-7.typ")]
 }
 
@@ -195,6 +195,9 @@ fn load_fonts() -> (Vec<Font>, FontBook) {
         };
     }
 
+    // We include each file individually to make sure that all expected files are available.
+    // Note that these font files are only read at font index 0 (i.e. font files with multiple
+    // fonts are not supported, split them up in separate files instead)
     include_font!("fonts/bitstream-vera/Vera.ttf");
     include_font!("fonts/bitstream-vera/VeraBd.ttf");
     include_font!("fonts/bitstream-vera/VeraBI.ttf");

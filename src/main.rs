@@ -1,5 +1,6 @@
-use std::{fs::read_to_string, time::Instant};
+use std::{fs::read_to_string, path::PathBuf, time::Instant};
 
+use clap::Parser;
 use typst::{diag::eco_format, eval::Tracer, foundations::Smart};
 
 use crate::world::PdfWorld;
@@ -7,13 +8,22 @@ use crate::world::PdfWorld;
 mod input;
 mod world;
 
+#[derive(Parser)]
+struct Cli {
+    model: String,
+    input: PathBuf,
+}
+
 fn main() {
+    let cli = Cli::parse();
+    let data = read_to_string(cli.input).unwrap();
+    let model = input::PdfModel::from_name_with_input(&cli.model, &data).unwrap();
+
     println!("Initializing...");
     let start = Instant::now();
     let mut world = PdfWorld::new();
-    world.set_input_model(input::PdfModel::ModelO7(
-        serde_json::from_str(&read_to_string("templates/inputs/model-o-7.json").unwrap()).unwrap(),
-    ));
+
+    world.set_input_model(model);
     println!("Initialization took {} ms", start.elapsed().as_millis());
 
     println!("Starting compilation...");
