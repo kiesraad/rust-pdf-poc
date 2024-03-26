@@ -32,16 +32,24 @@ fn main() {
     let result = typst::compile(&world, &mut tracer);
     println!("Compile took {} ms", compile_start.elapsed().as_millis());
 
+    let warnings = &tracer.warnings();
+    println!("{} warnings", warnings.len());
+    warnings.iter().for_each(|warning| {
+        println!("Warning: {:?}", warning);
+    });
+
     match result {
         Ok(document) => {
-            println!("Generating pdf...");
+            println!("Generating PDF...");
             let pdf_gen_start = Instant::now();
             let buffer = typst_pdf::pdf(&document, Smart::Auto, None);
-            std::fs::write("./test.pdf", buffer)
+            let file_name = format!("{}.pdf", cli.model);
+            std::fs::write(&file_name, buffer)
                 .map_err(|err| eco_format!("failed to write PDF file ({err})"))
                 .unwrap();
+            println!("Wrote PDF to {file_name}");
             println!(
-                "Pdf generation took {} ms",
+                "PDF generation took {} ms",
                 pdf_gen_start.elapsed().as_millis()
             );
         }
