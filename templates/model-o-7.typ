@@ -50,17 +50,41 @@ Met dit proces-verbaal stelt het hoofdstembureau voor een kieskring de uitkomst 
 = Zitting: aantal kiesgerechtigden
 
 = Aantal stemmen
-
-#let thing = () => 
-
-#table(
-  columns: 2,
-  [Aantal stembiljetten met een geldige stem op een kandidaat], grid(columns: 2, [E], [105978]),
-  [Aantal blanco stembiljetten], grid(columns: 2, [F], [978]),
-  [Aantal ongeldige stembiljetten], grid(columns: 2, [G], [873]),
-)
-
 == Aantal geldige, blanco en ongeldige stemmen
+
+#let cell2 = (letter, votes) => {
+  grid(
+    columns: (2em, 1fr),
+    align: (center, right),
+    stroke: black,
+    inset: 5pt,
+    [*#letter*],
+    [#votes]
+    )
+}
+
+#let cell1 = (cont) => {
+  table.cell(
+    stroke: black,
+    inset: 3pt,
+    cont,
+  )
+}
+
+#align(center, 
+box(
+  width: 80%,
+  table(
+    columns: (4fr, 1fr),
+    column-gutter: 4pt,
+    row-gutter: 4pt,
+    inset: 0pt,
+    align: (left + horizon),
+    stroke: none,
+    cell1([Aantal stembiljetten met een geldige stem op een kandidaat]), cell2("E", 105978),
+    cell1([Aantal blanco stembiljetten]), cell2("F", 978),
+    cell1([Aantal ongeldige stembiljetten]), cell2("G", 873),
+)))
 
 == Aantal stemmen per kandidaat en lijst
 
