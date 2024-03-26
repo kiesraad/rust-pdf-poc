@@ -18,6 +18,7 @@ pub struct ModelO7Input {
     gen_datum: String,
     leden_van: String,
     version: String,
+    sha256: String,
     datum: String,
     kieskring: String,
     stemmen: Vec<Lijst>,
