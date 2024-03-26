@@ -47,7 +47,7 @@ pub struct ModelP22_1Input {
     datum: String,
     partijen: Vec<Party>,
     stemmen: Vec<Lijst>,
-    kieskringen: Vec<KieskringTotals>
+    kieskringen: Vec<KieskringTotals>,
 }
 
 #[derive(Serialize, Deserialize)]

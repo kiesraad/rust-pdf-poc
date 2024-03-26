@@ -128,42 +128,38 @@ impl World for PdfWorld {
 /// In a debug build, this is done at runtime, for a release build this is
 /// done at compile time.
 macro_rules! include_filedata {
-    ($path:literal) => {
-        {
-            #[cfg(debug_assertions)]
-            fn filedata_init() -> &'static [u8] {
-                Box::leak(std::fs::read($path).unwrap().into_boxed_slice())
-            }
-
-            #[cfg(not(debug_assertions))]
-            fn filedata_init() -> &'static [u8] {
-                include_bytes!(concat!("../", $path)) as &'static [u8]
-            }
-
-            filedata_init()
+    ($path:literal) => {{
+        #[cfg(debug_assertions)]
+        fn filedata_init() -> &'static [u8] {
+            Box::leak(std::fs::read($path).unwrap().into_boxed_slice())
         }
-    };
+
+        #[cfg(not(debug_assertions))]
+        fn filedata_init() -> &'static [u8] {
+            include_bytes!(concat!("../", $path)) as &'static [u8]
+        }
+
+        filedata_init()
+    }};
 }
 
 /// Macro that loads data as a string from a file
 /// In a debug build, this is done at runtime, for a release build this is
 /// done at compile time.
 macro_rules! include_strdata {
-    ($path:literal) => {
-        {
-            #[cfg(debug_assertions)]
-            fn strdata_init() -> &'static str {
-                Box::leak(std::fs::read_to_string($path).unwrap().into_boxed_str())
-            }
-
-            #[cfg(not(debug_assertions))]
-            fn strdata_init() -> &'static str {
-                include_str!(concat!("../", $path)) as &'static str
-            }
-
-            strdata_init()
+    ($path:literal) => {{
+        #[cfg(debug_assertions)]
+        fn strdata_init() -> &'static str {
+            Box::leak(std::fs::read_to_string($path).unwrap().into_boxed_str())
         }
-    };
+
+        #[cfg(not(debug_assertions))]
+        fn strdata_init() -> &'static str {
+            include_str!(concat!("../", $path)) as &'static str
+        }
+
+        strdata_init()
+    }};
 }
 
 /// Load all sources available from the `templates/` directory (i.e. all typst
