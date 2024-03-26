@@ -1,4 +1,4 @@
-#import "common/style.typ": conf
+#import "common/style.typ": conf, title
 #import "common/scripts.typ": input_date, input_digit
 #let input = json("inputs/model-p-22-1.json")
 
@@ -7,21 +7,22 @@
   doc
 )
 
-*#input.version*
+#title(
+  input.version,
+  [Proces-verbaal van de uitslag van de verkiezing van de #input.leden_van],
+  [De verkiezing van de leden van de *#input.leden_van* \ op *#input.datum*]
+)
 
-= Proces-verbaal van de uitslag van de verkiezing van de #input.leden_van
-De verkiezing van de leden van de *#input.leden_van* op *#input.datum*
-
-== 1. Zitting; aantal kiesgerechtigden
+= Zitting; aantal kiesgerechtigden
 Het betreft de openbare zitting van het centraal stembureau in *'s-Gravenhage*.
 Datum en tijdstip aanvang zitting 1 december 2023 10:00 uur.
 Het aantal kiesgerechtigden voor deze verkiezing bedraagt *12345678*.
 
-== 2. Verslag controlewerkzaamheden
-Zie bijlage 2 bij dit proces-verbaal.
+= Verslag controlewerkzaamheden
+Zie bijlage 2 bij dit proces-verbaal. 
 
-== 3. Ingeleverde kandidatenlijsten
-De volgende politieke groeperingen hebben deelgenomen aan de verkiezing (in de volgende kieskringen):
+= Ingeleverde kandidatenlijsten
+De volgende politieke groeperingen hebben deelgenomen aan de verkiezing (in de volgende kieskringen): 
 
 #pagebreak()
 
@@ -96,5 +97,4 @@ De volgende politieke groeperingen hebben deelgenomen aan de verkiezing (in de v
 
 #pagebreak(weak: true)
 
-== 4. Aantal stemmen per lijst
-De volgende politieke groeperingen hebben deelgenomen aan de verkiezing (in de volgende kieskringen):
+= Aantal stemmen per lijst

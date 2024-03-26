@@ -15,8 +15,8 @@ De verkiezing van de leden van de *#input.leden_van*
   gutter: 5pt,
   [op],
   [*#input.datum*],
-  [Kiesring],
-  [*#input.kiesring*],
+  [kieskring],
+  [*#input.kieskring*],
 )
 
 #line(length: 100%)

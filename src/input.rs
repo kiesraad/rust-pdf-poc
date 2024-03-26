@@ -19,7 +19,7 @@ pub struct ModelO7Input {
     leden_van: String,
     version: String,
     datum: String,
-    kiesring: String,
+    kieskring: String,
     stemmen: Vec<Lijst>,
 }
 
@@ -38,7 +38,22 @@ pub struct Kandidaat {
 }
 
 #[derive(Serialize, Deserialize)]
-pub struct ModelP22_1Input {}
+pub struct ModelP22_1Input {
+    gen_datum: String,
+    version: String,
+    sha256: String,
+    leden_van: String,
+    datum: String,
+    partijen: Vec<Party>,
+    stemmen: Vec<Lijst>,
+}
+
+#[derive(Serialize, Deserialize)]
+pub struct Party {
+    positie: u64,
+    naam: String,
+    gelijkluidend: bool,
+}
 
 impl PdfModel {
     /// Get the filename for the input and template
