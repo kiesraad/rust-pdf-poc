@@ -178,7 +178,12 @@ fn load_sources() -> Vec<Source> {
     // are available. We include these files into the binary in release mode, but
     // read them at runtime on initialization to allow more rapid development on the
     // typst files.
-    vec![include_source!("templates/model-o-7.typ")]
+    vec![
+        include_source!("templates/common/style.typ"),
+        include_source!("templates/common/scripts.typ"),
+        include_source!("templates/model-p-22-1.typ"),
+        include_source!("templates/model-o-7.typ"),
+    ]
 }
 
 /// Load all fonts available from the `fonts/` directory

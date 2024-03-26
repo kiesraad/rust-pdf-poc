@@ -1,53 +1,13 @@
+#import "common/style.typ": conf
+#import "common/scripts.typ": input_date, input_digit
 #let input = json("inputs/model-o-7.json")
 
-#set text(
-  font: "Bitstream Vera Sans",
-  size: 10pt
+#show: doc => conf(
+  input,
+  doc
 )
-#set page(
-  paper: "a4",
-  margin: (x: 1.8cm, y: 1.5cm),
-  numbering: "1 / 1",
-  footer: [
-    #grid(
-      columns: (1fr, 1fr),
-      [Datum: #input.gen_datum],
-      align(right)[
-        pagina #counter(page).display("1 / 1", both: true)
-      ]
-    )
-  ]
-)
-
-#let input_digit() = {
-  box(width: 14pt, height: 9pt)[
-    #path(
-      stroke: black,
-      closed: false,
-      (15%, 0%),
-      (0%, 0%),
-      (0%, 100%),
-      (100%, 100%),
-      (100%, 0%),
-      (85%, 0%),
-    )
-  ]
-}
-
-#let input_date() = [
-  #input_digit() #input_digit() - #input_digit() #input_digit() - #input_digit() #input_digit() #input_digit() #input_digit() (dd-mm-jjjj)
-]
-
-#show heading.where(level: 1): set text(size: 18pt)
 
 #show heading.where(level: 3): set text(weight: "regular", size: 12pt)
-
-=== Model O 7: Proces-verbaal van een hoofdstembureau
-
-#line(length: 100%)
-
-== Model O 7
-
 = Proces-verbaal van een hoofdstembureau
 De verkiezing van de leden van de *#input.leden_van*
 #grid(
@@ -55,8 +15,8 @@ De verkiezing van de leden van de *#input.leden_van*
   gutter: 5pt,
   [op],
   [*#input.datum*],
-  [Kiesring],
-  [*#input.kiesring*],
+  [kieskring],
+  [*#input.kieskring*],
 )
 
 #line(length: 100%)
@@ -125,5 +85,4 @@ Met dit proces-verbaal stelt het hoofdstembureau voor een kieskring de uitkomst 
   )
   pagebreak(weak: true)
 }
-
 
