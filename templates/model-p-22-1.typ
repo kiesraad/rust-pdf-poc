@@ -98,3 +98,78 @@ De volgende politieke groeperingen hebben deelgenomen aan de verkiezing (in de v
 #pagebreak(weak: true)
 
 = Aantal stemmen per lijst
+#let table = {
+  let fill = white
+  // let fill = rgb("e4e5ea")
+
+  let num_kieskringen = input.kieskringen.len()
+
+  let batch_size = 8
+
+  for batch_start in range(0, num_kieskringen, step: batch_size) {
+    let batch_end = calc.min(batch_start + batch_size, num_kieskringen)
+    let kieskring_nrs = range(batch_start, batch_end).map(n => input.kieskringen.at(n).number)
+    let incl_totals = batch_end == num_kieskringen
+
+    let columns = (auto, ..range(batch_start, batch_end).map(_ => 1fr))
+    let align = (left, ..range(batch_start, batch_end).map(_ => end)).map(a => a + horizon)
+    let header_one = ([], table.cell(align: start, colspan: batch_end - batch_start, [*Kieskring*]))
+    let header_two = ([*Lijstnr.*], ..kieskring_nrs.map(n => [#n]))
+
+
+    let kieskring_totals = kieskring_nrs.map(kieskring_heading => {
+      let totals = input.kieskringen.find(k => k.number == kieskring_heading)
+      ([#totals.total_stemmen], [#totals.blanco_stemmen], [#totals.ongeldige_stemmen])
+    })
+
+    let kieskring_total = kieskring_totals.map(t => t.at(0))
+    let kieskring_blanco = kieskring_totals.map(t => t.at(1))
+    let kieskring_ongeldig = kieskring_totals.map(t => t.at(2))
+
+    if incl_totals {
+      columns.push(auto)
+      align.push(end)
+      header_one.push([*Totaal*])
+      header_two.push([])
+
+      kieskring_total.push([#input.kieskringen.fold(0, (sum, k) => {sum + k.total_stemmen})])
+      kieskring_blanco.push([#input.kieskringen.fold(0, (sum, k) => {sum + k.blanco_stemmen})])
+      kieskring_ongeldig.push([#input.kieskringen.fold(0, (sum, k) => {sum + k.ongeldige_stemmen})])
+    }
+
+    table(
+      columns: columns,
+      fill: fill,
+      align: align,
+      stroke: none,
+      table.header(
+        ..header_one,
+        ..header_two,
+      ),
+      table.hline(start: 0, end: batch_end - batch_start + 1),
+    ..input.stemmen.map(partij => {
+      let row = ([#partij.lijstnummer],
+      kieskring_nrs.map(kieskring_heading => [
+        #partij.kieskringen.find(k => k.number == kieskring_heading).votes
+      ]))
+      if incl_totals {
+        row.push([#partij.kieskringen.fold(0, (sum, k) => {sum + k.votes})])
+      }
+      row
+    }).flatten(),
+    table.hline(),
+    [*Totaal*],
+    ..kieskring_total,
+    table.hline(),
+    [Blanco \ stemmen],
+    ..kieskring_blanco,
+    [Ongeldige \ stemmen],
+    ..kieskring_ongeldig
+  )
+  }
+
+}
+
+#table
+
+// ..input.kieskringen.map(k => [*#k.number*])

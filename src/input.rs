@@ -28,6 +28,7 @@ pub struct Lijst {
     naam: String,
     lijstnummer: u64,
     kandidaten: Vec<Kandidaat>,
+    kieskringen: Vec<Kieskring>,
 }
 
 #[derive(Serialize, Deserialize)]
@@ -46,6 +47,21 @@ pub struct ModelP22_1Input {
     datum: String,
     partijen: Vec<Party>,
     stemmen: Vec<Lijst>,
+    kieskringen: Vec<KieskringTotals>
+}
+
+#[derive(Serialize, Deserialize)]
+pub struct KieskringTotals {
+    number: u64,
+    total_stemmen: u64,
+    blanco_stemmen: u64,
+    ongeldige_stemmen: u64,
+}
+
+#[derive(Serialize, Deserialize)]
+pub struct Kieskring {
+    number: u64,
+    votes: u64,
 }
 
 #[derive(Serialize, Deserialize)]
