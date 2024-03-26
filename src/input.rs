@@ -29,6 +29,7 @@ pub struct Lijst {
     naam: String,
     lijstnummer: u64,
     kandidaten: Vec<Kandidaat>,
+    #[serde(default)]
     kieskringen: Vec<Kieskring>,
 }
 

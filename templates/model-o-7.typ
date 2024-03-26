@@ -1,15 +1,19 @@
-#import "common/style.typ": conf
+#import "common/style.typ": conf, title
 #import "common/scripts.typ": input_date, input_digit
-#let input = json("inputs/model-o-7.json")
+#let input = json("inputs/model-o-7.json") 
 
 #show: doc => conf(
   input,
   doc
 )
 
-#show heading.where(level: 3): set text(weight: "regular", size: 12pt)
-= Proces-verbaal van een hoofdstembureau
-De verkiezing van de leden van de *#input.leden_van*
+#title(
+  input.version,
+  [Proces-verbaal van een hoofdstembureau],
+  [De verkiezing van de leden van de *#input.leden_van*]
+)
+
+
 #grid(
   columns: (100pt, auto),
   gutter: 5pt,
@@ -43,23 +47,22 @@ Met dit proces-verbaal stelt het hoofdstembureau voor een kieskring de uitkomst 
   )
 ]
 
-#show heading.where(level: 2): it => {
-  block(width: 100%, fill: black, inset: 8pt, radius: 1pt)[
-    #text(fill: white)[#it.body]
-  ]
-}
+= Zitting: aantal kiesgerechtigden
 
-#show heading.where(level: 3): it => {
-  text(weight: "bold", size: 12pt)[#it.body]
-}
+= Aantal stemmen
 
-== Zitting: aantal kiesgerechtigden
+#let thing = () => 
 
-== Aantal stemmen
+#table(
+  columns: 2,
+  [Aantal stembiljetten met een geldige stem op een kandidaat], grid(columns: 2, [E], [105978]),
+  [Aantal blanco stembiljetten], grid(columns: 2, [F], [978]),
+  [Aantal ongeldige stembiljetten], grid(columns: 2, [G], [873]),
+)
 
-=== Aantal geldige, blanco en ongeldige stemmen
+== Aantal geldige, blanco en ongeldige stemmen
 
-=== Aantal stemmen per kandidaat en lijst
+== Aantal stemmen per kandidaat en lijst
 
 #for lijst in input.stemmen {
   table(

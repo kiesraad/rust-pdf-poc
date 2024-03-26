@@ -104,7 +104,7 @@ De volgende politieke groeperingen hebben deelgenomen aan de verkiezing (in de v
 
   let num_kieskringen = input.kieskringen.len()
 
-  let batch_size = 8
+  let batch_size = 9
 
   for batch_start in range(0, num_kieskringen, step: batch_size) {
     let batch_end = calc.min(batch_start + batch_size, num_kieskringen)

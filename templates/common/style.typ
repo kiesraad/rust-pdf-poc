@@ -25,7 +25,7 @@
     ]
   )
 
-  #set heading(numbering: "1.1.    ")
+  #set heading(numbering: "1a    ")
 
   #show heading.where(level: 1): it => {
     block(width: 100%, fill: black, inset: 6pt)[
@@ -46,5 +46,4 @@
     [],
     grid.hline(),
   )
-
 }
