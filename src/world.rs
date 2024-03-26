@@ -129,11 +129,18 @@ impl World for PdfWorld {
 /// done at compile time.
 macro_rules! include_filedata {
     ($path:literal) => {
-        if cfg!(debug) {
-            // we are leaking the data into a static slice
-            Box::leak(std::fs::read($path).unwrap().into_boxed_slice())
-        } else {
-            include_bytes!(concat!("../", $path)) as &'static [u8]
+        {
+            #[cfg(debug_assertions)]
+            fn filedata_init() -> &'static [u8] {
+                Box::leak(std::fs::read($path).unwrap().into_boxed_slice())
+            }
+
+            #[cfg(not(debug_assertions))]
+            fn filedata_init() -> &'static [u8] {
+                include_bytes!(concat!("../", $path)) as &'static [u8]
+            }
+
+            filedata_init()
         }
     };
 }
@@ -143,11 +150,18 @@ macro_rules! include_filedata {
 /// done at compile time.
 macro_rules! include_strdata {
     ($path:literal) => {
-        if cfg!(debug) {
-            // we are leaking the data into a static string slice
-            Box::leak(std::fs::read_to_string($path).unwrap().into_boxed_str())
-        } else {
-            include_str!(concat!("../", $path)) as &'static str
+        {
+            #[cfg(debug_assertions)]
+            fn strdata_init() -> &'static str {
+                Box::leak(std::fs::read_to_string($path).unwrap().into_boxed_str())
+            }
+
+            #[cfg(not(debug_assertions))]
+            fn strdata_init() -> &'static str {
+                include_str!(concat!("../", $path)) as &'static str
+            }
+
+            strdata_init()
         }
     };
 }
