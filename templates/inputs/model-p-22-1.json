@@ -12,7 +12,18 @@
     { "positie": 5, "naam": "De Partij", "gelijkluidend": false },
     { "positie": 6, "naam": "Partijpartners", "gelijkluidend": false },
     { "positie": 7, "naam": "Partij voor de groep", "gelijkluidend": false },
-    { "positie": 8, "naam": "Partijtje", "gelijkluidend": true }
+    { "positie": 8, "naam": "Partijtje", "gelijkluidend": true },
+    { "positie": 9, "naam": "Generatiebeweging", "gelijkluidend": true },
+    { "positie": 10, "naam": "Innovatie en Welzijnspartij", "gelijkluidend": true },
+    { "positie": 11, "naam": "Nieuwe Democratie Alliantie", "gelijkluidend": true },
+    { "positie": 12, "naam": "Progressief Conservatief Nederland", "gelijkluidend": true },
+    { "positie": 13, "naam": "Solidariteitspartij", "gelijkluidend": true },
+    { "positie": 14, "naam": "Rechtvaardigheid en Vooruitgang", "gelijkluidend": true },
+    { "positie": 15, "naam": "Liberaal Democratische Partij", "gelijkluidend": true },
+    { "positie": 16, "naam": "Groene Toekomst", "gelijkluidend": true },
+    { "positie": 17, "naam": "Sociaal Progressief Nederland", "gelijkluidend": true },
+    { "positie": 18, "naam": "Eendrachtspartij", "gelijkluidend": true },
+    { "positie": 19, "naam": "Duurzaam Nederland", "gelijkluidend": true }
   ],
   "stemmen": [
     {
@@ -79,6 +90,28 @@
         { "positie": 58, "name": "Robert-Jan Olthuis", "votes": 38 },
         { "positie": 59, "name": "Jurren Nij Bijvank", "votes": 37 },
         { "positie": 60, "name": "Berend Bieleman", "votes": 36 }
+      ],
+      "kieskringen": [
+        { "number": 1, "votes": 12345 },
+        { "number": 2, "votes": 12345 },
+        { "number": 3, "votes": 12345 },
+        { "number": 4, "votes": 12345 },
+        { "number": 5, "votes": 12345 },
+        { "number": 6, "votes": 12345 },
+        { "number": 7, "votes": 12345 },
+        { "number": 8, "votes": 12345 },
+        { "number": 9, "votes": 12345 },
+        { "number": 10, "votes": 12345 },
+        { "number": 11, "votes": 12345 },
+        { "number": 12, "votes": 12345 },
+        { "number": 13, "votes": 12345 },
+        { "number": 14, "votes": 12345 },
+        { "number": 15, "votes": 12345 },
+        { "number": 16, "votes": 12345 },
+        { "number": 17, "votes": 12345 },
+        { "number": 18, "votes": 12345 },
+        { "number": 19, "votes": 12345 },
+        { "number": 20, "votes": 12345 }
       ]
     },
     {
@@ -145,6 +178,28 @@
         { "positie": 58, "name": "Robert-Jan Olthuis", "votes": 38 },
         { "positie": 59, "name": "Jurren Nij Bijvank", "votes": 37 },
         { "positie": 60, "name": "Berend Bieleman", "votes": 36 }
+      ],
+      "kieskringen": [
+        { "number": 1, "votes": 12345 },
+        { "number": 2, "votes": 12345 },
+        { "number": 3, "votes": 12345 },
+        { "number": 4, "votes": 12345 },
+        { "number": 5, "votes": 12345 },
+        { "number": 6, "votes": 12345 },
+        { "number": 7, "votes": 12345 },
+        { "number": 8, "votes": 12345 },
+        { "number": 9, "votes": 12345 },
+        { "number": 10, "votes": 12345 },
+        { "number": 11, "votes": 12345 },
+        { "number": 12, "votes": 12345 },
+        { "number": 13, "votes": 12345 },
+        { "number": 14, "votes": 12345 },
+        { "number": 15, "votes": 12345 },
+        { "number": 16, "votes": 12345 },
+        { "number": 17, "votes": 12345 },
+        { "number": 18, "votes": 12345 },
+        { "number": 19, "votes": 12345 },
+        { "number": 20, "votes": 12345 }
       ]
     },
     {
@@ -211,6 +266,28 @@
         { "positie": 58, "name": "Robert-Jan Olthuis", "votes": 38 },
         { "positie": 59, "name": "Jurren Nij Bijvank", "votes": 37 },
         { "positie": 60, "name": "Berend Bieleman", "votes": 36 }
+      ],
+      "kieskringen": [
+        { "number": 1, "votes": 12345 },
+        { "number": 2, "votes": 12345 },
+        { "number": 3, "votes": 12345 },
+        { "number": 4, "votes": 12345 },
+        { "number": 5, "votes": 12345 },
+        { "number": 6, "votes": 12345 },
+        { "number": 7, "votes": 12345 },
+        { "number": 8, "votes": 12345 },
+        { "number": 9, "votes": 12345 },
+        { "number": 10, "votes": 12345 },
+        { "number": 11, "votes": 12345 },
+        { "number": 12, "votes": 12345 },
+        { "number": 13, "votes": 12345 },
+        { "number": 14, "votes": 12345 },
+        { "number": 15, "votes": 12345 },
+        { "number": 16, "votes": 12345 },
+        { "number": 17, "votes": 12345 },
+        { "number": 18, "votes": 12345 },
+        { "number": 19, "votes": 12345 },
+        { "number": 20, "votes": 12345 }
       ]
     },
     {
@@ -277,6 +354,28 @@
         { "positie": 58, "name": "Robert-Jan Olthuis", "votes": 38 },
         { "positie": 59, "name": "Jurren Nij Bijvank", "votes": 37 },
         { "positie": 60, "name": "Berend Bieleman", "votes": 36 }
+      ],
+      "kieskringen": [
+        { "number": 1, "votes": 12345 },
+        { "number": 2, "votes": 12345 },
+        { "number": 3, "votes": 12345 },
+        { "number": 4, "votes": 12345 },
+        { "number": 5, "votes": 12345 },
+        { "number": 6, "votes": 12345 },
+        { "number": 7, "votes": 12345 },
+        { "number": 8, "votes": 12345 },
+        { "number": 9, "votes": 12345 },
+        { "number": 10, "votes": 12345 },
+        { "number": 11, "votes": 12345 },
+        { "number": 12, "votes": 12345 },
+        { "number": 13, "votes": 12345 },
+        { "number": 14, "votes": 12345 },
+        { "number": 15, "votes": 12345 },
+        { "number": 16, "votes": 12345 },
+        { "number": 17, "votes": 12345 },
+        { "number": 18, "votes": 12345 },
+        { "number": 19, "votes": 12345 },
+        { "number": 20, "votes": 12345 }
       ]
     },
     {
@@ -343,6 +442,28 @@
         { "positie": 58, "name": "Robert-Jan Olthuis", "votes": 38 },
         { "positie": 59, "name": "Jurren Nij Bijvank", "votes": 37 },
         { "positie": 60, "name": "Berend Bieleman", "votes": 36 }
+      ],
+      "kieskringen": [
+        { "number": 1, "votes": 12345 },
+        { "number": 2, "votes": 12345 },
+        { "number": 3, "votes": 12345 },
+        { "number": 4, "votes": 12345 },
+        { "number": 5, "votes": 12345 },
+        { "number": 6, "votes": 12345 },
+        { "number": 7, "votes": 12345 },
+        { "number": 8, "votes": 12345 },
+        { "number": 9, "votes": 12345 },
+        { "number": 10, "votes": 12345 },
+        { "number": 11, "votes": 12345 },
+        { "number": 12, "votes": 12345 },
+        { "number": 13, "votes": 12345 },
+        { "number": 14, "votes": 12345 },
+        { "number": 15, "votes": 12345 },
+        { "number": 16, "votes": 12345 },
+        { "number": 17, "votes": 12345 },
+        { "number": 18, "votes": 12345 },
+        { "number": 19, "votes": 12345 },
+        { "number": 20, "votes": 12345 }
       ]
     },
     {
@@ -409,6 +530,28 @@
         { "positie": 58, "name": "Robert-Jan Olthuis", "votes": 38 },
         { "positie": 59, "name": "Jurren Nij Bijvank", "votes": 37 },
         { "positie": 60, "name": "Berend Bieleman", "votes": 36 }
+      ],
+      "kieskringen": [
+        { "number": 1, "votes": 12345 },
+        { "number": 2, "votes": 12345 },
+        { "number": 3, "votes": 12345 },
+        { "number": 4, "votes": 12345 },
+        { "number": 5, "votes": 12345 },
+        { "number": 6, "votes": 12345 },
+        { "number": 7, "votes": 12345 },
+        { "number": 8, "votes": 12345 },
+        { "number": 9, "votes": 12345 },
+        { "number": 10, "votes": 12345 },
+        { "number": 11, "votes": 12345 },
+        { "number": 12, "votes": 12345 },
+        { "number": 13, "votes": 12345 },
+        { "number": 14, "votes": 12345 },
+        { "number": 15, "votes": 12345 },
+        { "number": 16, "votes": 12345 },
+        { "number": 17, "votes": 12345 },
+        { "number": 18, "votes": 12345 },
+        { "number": 19, "votes": 12345 },
+        { "number": 20, "votes": 12345 }
       ]
     },
     {
@@ -475,6 +618,28 @@
         { "positie": 58, "name": "Robert-Jan Olthuis", "votes": 38 },
         { "positie": 59, "name": "Jurren Nij Bijvank", "votes": 37 },
         { "positie": 60, "name": "Berend Bieleman", "votes": 36 }
+      ],
+      "kieskringen": [
+        { "number": 1, "votes": 12345 },
+        { "number": 2, "votes": 12345 },
+        { "number": 3, "votes": 12345 },
+        { "number": 4, "votes": 12345 },
+        { "number": 5, "votes": 12345 },
+        { "number": 6, "votes": 12345 },
+        { "number": 7, "votes": 12345 },
+        { "number": 8, "votes": 12345 },
+        { "number": 9, "votes": 12345 },
+        { "number": 10, "votes": 12345 },
+        { "number": 11, "votes": 12345 },
+        { "number": 12, "votes": 12345 },
+        { "number": 13, "votes": 12345 },
+        { "number": 14, "votes": 12345 },
+        { "number": 15, "votes": 12345 },
+        { "number": 16, "votes": 12345 },
+        { "number": 17, "votes": 12345 },
+        { "number": 18, "votes": 12345 },
+        { "number": 19, "votes": 12345 },
+        { "number": 20, "votes": 12345 }
       ]
     },
     {
@@ -541,6 +706,28 @@
         { "positie": 58, "name": "Robert-Jan Olthuis", "votes": 38 },
         { "positie": 59, "name": "Jurren Nij Bijvank", "votes": 37 },
         { "positie": 60, "name": "Berend Bieleman", "votes": 36 }
+      ],
+      "kieskringen": [
+        { "number": 1, "votes": 12345 },
+        { "number": 2, "votes": 12345 },
+        { "number": 3, "votes": 12345 },
+        { "number": 4, "votes": 12345 },
+        { "number": 5, "votes": 12345 },
+        { "number": 6, "votes": 12345 },
+        { "number": 7, "votes": 12345 },
+        { "number": 8, "votes": 12345 },
+        { "number": 9, "votes": 12345 },
+        { "number": 10, "votes": 12345 },
+        { "number": 11, "votes": 12345 },
+        { "number": 12, "votes": 12345 },
+        { "number": 13, "votes": 12345 },
+        { "number": 14, "votes": 12345 },
+        { "number": 15, "votes": 12345 },
+        { "number": 16, "votes": 12345 },
+        { "number": 17, "votes": 12345 },
+        { "number": 18, "votes": 12345 },
+        { "number": 19, "votes": 12345 },
+        { "number": 20, "votes": 12345 }
       ]
     },
     {
@@ -607,6 +794,28 @@
         { "positie": 58, "name": "Robert-Jan Olthuis", "votes": 38 },
         { "positie": 59, "name": "Jurren Nij Bijvank", "votes": 37 },
         { "positie": 60, "name": "Berend Bieleman", "votes": 36 }
+      ],
+      "kieskringen": [
+        { "number": 1, "votes": 12345 },
+        { "number": 2, "votes": 12345 },
+        { "number": 3, "votes": 12345 },
+        { "number": 4, "votes": 12345 },
+        { "number": 5, "votes": 12345 },
+        { "number": 6, "votes": 12345 },
+        { "number": 7, "votes": 12345 },
+        { "number": 8, "votes": 12345 },
+        { "number": 9, "votes": 9876 },
+        { "number": 10, "votes": 12345 },
+        { "number": 11, "votes": 12345 },
+        { "number": 12, "votes": 12345 },
+        { "number": 13, "votes": 12345 },
+        { "number": 14, "votes": 12345 },
+        { "number": 15, "votes": 12345 },
+        { "number": 16, "votes": 12345 },
+        { "number": 17, "votes": 12345 },
+        { "number": 18, "votes": 12345 },
+        { "number": 19, "votes": 12345 },
+        { "number": 20, "votes": 12345 }
       ]
     },
     {
@@ -673,6 +882,28 @@
         { "positie": 58, "name": "Robert-Jan Olthuis", "votes": 38 },
         { "positie": 59, "name": "Jurren Nij Bijvank", "votes": 37 },
         { "positie": 60, "name": "Berend Bieleman", "votes": 36 }
+      ],
+      "kieskringen": [
+        { "number": 1, "votes": 12345 },
+        { "number": 2, "votes": 12345 },
+        { "number": 3, "votes": 12345 },
+        { "number": 4, "votes": 12345 },
+        { "number": 5, "votes": 12345 },
+        { "number": 6, "votes": 12345 },
+        { "number": 7, "votes": 12345 },
+        { "number": 8, "votes": 12345 },
+        { "number": 9, "votes": 12345 },
+        { "number": 10, "votes": 12345 },
+        { "number": 11, "votes": 12345 },
+        { "number": 12, "votes": 12345 },
+        { "number": 13, "votes": 12345 },
+        { "number": 14, "votes": 12345 },
+        { "number": 15, "votes": 12345 },
+        { "number": 16, "votes": 12345 },
+        { "number": 17, "votes": 12345 },
+        { "number": 18, "votes": 12345 },
+        { "number": 19, "votes": 12345 },
+        { "number": 20, "votes": 12345 }
       ]
     },
     {
@@ -739,6 +970,28 @@
         { "positie": 58, "name": "Robert-Jan Olthuis", "votes": 38 },
         { "positie": 59, "name": "Jurren Nij Bijvank", "votes": 37 },
         { "positie": 60, "name": "Berend Bieleman", "votes": 36 }
+      ],
+      "kieskringen": [
+        { "number": 1, "votes": 12345 },
+        { "number": 2, "votes": 12345 },
+        { "number": 3, "votes": 12345 },
+        { "number": 4, "votes": 12345 },
+        { "number": 5, "votes": 12345 },
+        { "number": 6, "votes": 12345 },
+        { "number": 7, "votes": 12345 },
+        { "number": 8, "votes": 12345 },
+        { "number": 9, "votes": 12345 },
+        { "number": 10, "votes": 12345 },
+        { "number": 11, "votes": 12345 },
+        { "number": 12, "votes": 12345 },
+        { "number": 13, "votes": 12345 },
+        { "number": 14, "votes": 12345 },
+        { "number": 15, "votes": 12345 },
+        { "number": 16, "votes": 12345 },
+        { "number": 17, "votes": 12345 },
+        { "number": 18, "votes": 12345 },
+        { "number": 19, "votes": 12345 },
+        { "number": 20, "votes": 12345 }
       ]
     },
     {
@@ -805,7 +1058,51 @@
         { "positie": 58, "name": "Robert-Jan Olthuis", "votes": 38 },
         { "positie": 59, "name": "Jurren Nij Bijvank", "votes": 37 },
         { "positie": 60, "name": "Berend Bieleman", "votes": 36 }
+      ],
+      "kieskringen": [
+        { "number": 1, "votes": 12345 },
+        { "number": 2, "votes": 12345 },
+        { "number": 3, "votes": 12345 },
+        { "number": 4, "votes": 12345 },
+        { "number": 5, "votes": 12345 },
+        { "number": 6, "votes": 12345 },
+        { "number": 7, "votes": 12345 },
+        { "number": 8, "votes": 12345 },
+        { "number": 9, "votes": 12345 },
+        { "number": 10, "votes": 12345 },
+        { "number": 11, "votes": 12345 },
+        { "number": 12, "votes": 12345 },
+        { "number": 13, "votes": 12345 },
+        { "number": 14, "votes": 12345 },
+        { "number": 15, "votes": 12345 },
+        { "number": 16, "votes": 12345 },
+        { "number": 17, "votes": 12345 },
+        { "number": 18, "votes": 12345 },
+        { "number": 19, "votes": 12345 },
+        { "number": 20, "votes": 12345 }
       ]
     }
+  ],
+  "kieskringen": [
+    { "number": 1, "total_stemmen": 1234500, "blanco_stemmen":200, "ongeldige_stemmen":300 },
+    { "number": 2, "total_stemmen": 1234500, "blanco_stemmen": 200, "ongeldige_stemmen": 300 },
+    { "number": 3, "total_stemmen": 1234500, "blanco_stemmen": 200, "ongeldige_stemmen": 300 },
+    { "number": 4, "total_stemmen": 1234500, "blanco_stemmen": 200, "ongeldige_stemmen": 300 },
+    { "number": 5, "total_stemmen": 1234500, "blanco_stemmen": 200, "ongeldige_stemmen": 300 },
+    { "number": 6, "total_stemmen": 1234500, "blanco_stemmen": 200, "ongeldige_stemmen": 300 },
+    { "number": 7, "total_stemmen": 1234500, "blanco_stemmen": 200, "ongeldige_stemmen": 300 },
+    { "number": 8, "total_stemmen": 1234500, "blanco_stemmen": 200, "ongeldige_stemmen": 300 },
+    { "number": 9, "total_stemmen": 1234500, "blanco_stemmen": 200, "ongeldige_stemmen": 300 },
+    { "number": 10, "total_stemmen": 1234500, "blanco_stemmen": 200, "ongeldige_stemmen": 300 },
+    { "number": 11, "total_stemmen": 98765431, "blanco_stemmen": 200, "ongeldige_stemmen": 300 },
+    { "number": 12, "total_stemmen": 1234500, "blanco_stemmen": 200, "ongeldige_stemmen": 300 },
+    { "number": 13, "total_stemmen": 1234500, "blanco_stemmen": 200, "ongeldige_stemmen": 300 },
+    { "number": 14, "total_stemmen": 1234500, "blanco_stemmen": 200, "ongeldige_stemmen": 300 },
+    { "number": 15, "total_stemmen": 1234500, "blanco_stemmen": 200, "ongeldige_stemmen": 300 },
+    { "number": 16, "total_stemmen": 1234500, "blanco_stemmen": 200, "ongeldige_stemmen": 300 },
+    { "number": 17, "total_stemmen": 1234500, "blanco_stemmen": 200, "ongeldige_stemmen": 300 },
+    { "number": 18, "total_stemmen": 1234500, "blanco_stemmen": 200, "ongeldige_stemmen": 300 },
+    { "number": 19, "total_stemmen": 1234500, "blanco_stemmen": 200, "ongeldige_stemmen": 300 },
+    { "number": 20, "total_stemmen": 1234500, "blanco_stemmen": 200, "ongeldige_stemmen": 300 }
   ]
 }
