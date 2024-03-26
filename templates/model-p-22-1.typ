@@ -162,9 +162,11 @@ De volgende politieke groeperingen hebben deelgenomen aan de verkiezing (in de v
     ..kieskring_total,
     table.hline(),
     [Blanco \ stemmen],
+    table.hline(),
     ..kieskring_blanco,
     [Ongeldige \ stemmen],
-    ..kieskring_ongeldig
+    ..kieskring_ongeldig,
+    table.hline(),
   )
   }
 
