@@ -174,6 +174,10 @@ fn load_sources() -> Vec<Source> {
         };
     }
 
+    // We include each template file individually to make sure that all expected files
+    // are available. We include these files into the binary in release mode, but
+    // read them at runtime on initialization to allow more rapid development on the
+    // typst files.
     vec![
         include_source!("templates/common/style.typ"),
         include_source!("templates/common/scripts.typ"),
@@ -196,6 +200,9 @@ fn load_fonts() -> (Vec<Font>, FontBook) {
         };
     }
 
+    // We include each file individually to make sure that all expected files are available.
+    // Note that these font files are only read at font index 0 (i.e. font files with multiple
+    // fonts are not supported, split them up in separate files instead)
     include_font!("fonts/bitstream-vera/Vera.ttf");
     include_font!("fonts/bitstream-vera/VeraBd.ttf");
     include_font!("fonts/bitstream-vera/VeraBI.ttf");

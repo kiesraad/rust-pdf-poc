@@ -107,4 +107,16 @@ impl PdfModel {
 
         Ok(Bytes::from(data.as_bytes()))
     }
+
+    pub fn from_name_with_input(
+        name: &str,
+        input: &str,
+    ) -> Result<PdfModel, Box<dyn std::error::Error>> {
+        use PdfModel::*;
+        match name {
+            "model-o-7" => Ok(ModelO7(serde_json::from_str(input)?)),
+            "model-p-22-1" => Ok(ModelP22_1(serde_json::from_str(input)?)),
+            _ => Err(std::io::Error::new(std::io::ErrorKind::InvalidInput, "Unknown model").into()),
+        }
+    }
 }
