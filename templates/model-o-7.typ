@@ -13,7 +13,6 @@
   [De verkiezing van de leden van de *#input.leden_van*]
 )
 
-
 #grid(
   columns: (100pt, auto),
   gutter: 5pt,
@@ -76,7 +75,7 @@ Het aantal kiesgerechtigden woonachtig in de van deze kieskring deel uitmakende 
     inset: 5pt,
     [*#letter*],
     [#votes]
-    )
+  )
 }
 
 #align(
@@ -108,10 +107,10 @@ Het aantal kiesgerechtigden woonachtig in de van deze kieskring deel uitmakende 
     fill: (_, y) => if calc.odd(y) { rgb("EAF2F5") },
     table.header(
       table.cell(colspan: 3, grid(
-          columns: (auto, auto),
-          gutter: 12pt,
-          [*Lijstnaam*],   [#lijst.naam],
-          [*Lijstnummer*], [#lijst.lijstnummer],
+        columns: (auto, auto),
+        gutter: 12pt,
+        [*Lijstnaam*],   [#lijst.naam],
+        [*Lijstnummer*], [#lijst.lijstnummer],
       )),
       [*Nummer op de lijst*], [*Naam kandidaat*], [*Aantal stemmen*],
     ),

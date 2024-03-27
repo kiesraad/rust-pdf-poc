@@ -10,7 +10,9 @@ mod world;
 
 #[derive(Parser)]
 struct Cli {
+    /// The model to render, in kebab-case (example: model-p-22-1)
     model: String,
+    /// The path to the JSON input data
     input: PathBuf,
 }
 
