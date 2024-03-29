@@ -16,6 +16,15 @@
   weight: "bold",
   t
 );
+#let subtitle(t) = block(
+  above: 16pt,
+  below: 24pt,
+  text(
+    size: 13pt,
+    fill: rgb("777"),
+    t
+  )
+);
 #set list(body-indent: 10pt)
 #show link: set text(blue)
 #show heading: set block(above: 33pt, below: 15pt)
@@ -56,6 +65,7 @@
 // Start of content
 //
 #title([PDF Generation Proof of Concept])
+#subtitle([Findings and recommendations as a result of implementing the PDF Generation Proof of Concept])
 
 In support to the checking process of election results, Kiesraad would like to generate a PDF containing the results given some input. In this document, we'll explain our chosen solution and the considerations we made along the way. First we'll talk about the project's constraints and explaining certain solutions we considered, then we'll talk about the resulting implementation.
 
@@ -136,6 +146,8 @@ The following table contains the several software stacks we considered which eac
 We ended up chosing Typst as its pros far outweigh its cons in our opinion. The codebase (at the moment at least) seems well written, nicely structured and quite easily understandible.
 
 Might there be a case where something is missing, broken, or wrong about Typst, there are certainly scenarios thinkable where we could fork and/or contribute back to the Typst repository.
+
+All other solutions fail to meet the constraints without some significant development effort, so a solution built around Typst seems by far the most logical road to take.
 
 = Overview of the PoC implementation results
 In this section, we'll explore the results and considerations of the implementation we did for this Proof of Concept.
