@@ -2,6 +2,8 @@
 
 A Proof of Concept application that generates a PDF given a `model` consisting of a Typst template and some JSON `input`.
 
+Copyright © 2024 Kiesraad. Licensed under the EUPL-1.2 or later.
+
 ## Usage
 
 ### Development
