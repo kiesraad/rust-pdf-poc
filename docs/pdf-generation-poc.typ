@@ -159,7 +159,7 @@ Below are all used dependencies (crates), used for the Proof of Concept. Note th
 
 Aside from Rust code we created two Typst templates (see `templates/` in the GitHub repository), based on two provided examples. Each of these Typst templates shares common styles and scripts (see `templates/common/` in the GitHub repository).
 
-Typst can use either online or offline vendored Typst code as external dependency. We tested this with the #link("")[`tablex`] dependency, but during the development of this Proof of Concept, Typst released new versions of their crates, which included most of the functionality we needed for tables, thus mitigating the need for an external dependency.
+Typst can use either online or offline vendored Typst code as external dependency. We tested this with the #link("https://github.com/PgBiel/typst-tablex")[`tablex`] dependency, but during the development of this Proof of Concept, Typst released new versions of their crates, which included most of the functionality we needed for tables, thus mitigating the need for an external dependency.
 
 It is worth noting that using a lot of (external) Typst code can increase the compilation time of the templates dramatically. It is advised to use built-in functionality wherever possible, as it is written in Rust as doesn't need to be parsed and interpreted every time.
 
