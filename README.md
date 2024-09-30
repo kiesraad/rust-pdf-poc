@@ -1,5 +1,7 @@
 # Kiesraad Rust PDF generation
 
+**This repository has been archived. The proof of concept has been integrated into [Abacus](https://github.com/kiesraad/abacus).**
+
 A Proof of Concept application that generates a PDF given a `model` consisting of a Typst template and some JSON `input`.
 
 Copyright © 2024 Kiesraad. Licensed under the EUPL-1.2 or later.
